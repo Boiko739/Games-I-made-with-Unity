@@ -7,6 +7,7 @@ public class PipeSpawnerScrypt : MonoBehaviour
     public float spawnRate = 2f;
     private float timer = 0f;
     private float spawnOffset = 3f;
+    public GameObject PipeContainer;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class PipeSpawnerScrypt : MonoBehaviour
         float lowestPoint = transform.position.y - spawnOffset;
         float highestPoint = transform.position.y + spawnOffset;
 
-        Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0), transform.rotation);
+        var pipeClone = Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0), transform.rotation);
+        pipeClone.transform.parent = PipeContainer.transform;
     }
 }
