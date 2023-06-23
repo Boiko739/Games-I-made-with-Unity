@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeMoveScript : MonoBehaviour
+public class CloudMoveScrypt : MonoBehaviour
 {
     private LogicScrypt logic;
     // Start is called before the first frame update
@@ -12,7 +14,7 @@ public class PipeMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3.left * logic.pipeMoveSpeed) * Time.deltaTime;
+        transform.position += (Vector3.left * logic.cloudMoveSpeed) * Time.deltaTime;
         if (transform.position.x < logic.deadZone)
             Destroy(gameObject);
     }
