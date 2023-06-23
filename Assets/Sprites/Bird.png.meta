@@ -101,6 +101,30 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 50
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -110,8 +134,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 214.5
-        height: 206
+        width: 190.33333
+        height: 163
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b902176f40c3614bb5adce77672f6f5
-      internalID: -1509597783
+      spriteID: 3b1e5e0455e683d4f919d2a4dc5b387c
+      internalID: 569206220
       vertices: []
       indices: 
       edges: []
@@ -129,10 +153,10 @@ TextureImporter:
       name: Bird(s)_1
       rect:
         serializedVersion: 2
-        x: 214
+        x: 190
         y: 0
-        width: 214.5
-        height: 206
+        width: 190.33333
+        height: 163
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +164,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4962e37ee7a06834c979a84971b66405
-      internalID: -1969770175
+      spriteID: 710c88514ffde7f409bc4662e7e75309
+      internalID: -1172173799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bird(s)_2
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 0
+        width: 190.33333
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa20cd7fdbdc8f44a9063d613faed4b4
+      internalID: -929915937
       vertices: []
       indices: 
       edges: []
@@ -157,8 +202,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bird(s)_0: -1509597783
-      Bird(s)_1: -1969770175
+      Bird(s)_0: 569206220
+      Bird(s)_1: -1172173799
+      Bird(s)_2: -929915937
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
