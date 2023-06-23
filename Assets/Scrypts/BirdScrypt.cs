@@ -1,16 +1,23 @@
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 public class BirdScrypt : MonoBehaviour
 {
     public Rigidbody2D myRigidBody2D;
+    public Sprite[] sprites;
     public float flapStrength;
     public bool birdIsAlive = true;
-    public LogicScrypt logic;
+    private LogicScrypt logic;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScrypt>();
+        GetComponent<SpriteRenderer>().sprite = sprites[0];
+        logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        spriteRenderer = GameObject.FindWithTag("Bird").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -19,6 +26,11 @@ public class BirdScrypt : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive)
         {
             myRigidBody2D.velocity = Vector2.up * flapStrength;
+            spriteRenderer.sprite = sprites[1];
+            for (float i = 0; i < 0.5; i++)//timer 0.5 is a time (in seconds) before bird change its skin backward
+                i += Time.deltaTime;
+            spriteRenderer.sprite = sprites[0];
+
         }
     }
 
