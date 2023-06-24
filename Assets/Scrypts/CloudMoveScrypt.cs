@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class CloudMoveScrypt : MonoBehaviour
 {
-    private LogicScrypt logic;
+    private float _cloudMoveSpeed = 5f;
+    private LogicScrypt _logic;
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3.left * logic.cloudMoveSpeed) * Time.deltaTime;
-        if (transform.position.x < logic.deadZone)
+        transform.position += (Vector3.left * _cloudMoveSpeed) * Time.deltaTime;
+        if (transform.position.x < _logic.DeadZone)
             Destroy(gameObject);
     }
 }

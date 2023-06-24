@@ -2,45 +2,53 @@ using UnityEngine;
 
 public class CloudSpawnerScrypt : MonoBehaviour
 {
-    private float timer = 0f;
-    public float cloudSpawnDelay = 0.6f;
-    private float cloudSpawnOffset = 3f;
+    private float _cloudSpawnDelay = 1f;
+    private float _cloudSpawnOffset = 7f;
+    private float _timer;
     public GameObject clouds;
     public GameObject cloudContainer;
-    private LogicScrypt logic;
+    private LogicScrypt _logic;
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
-        SpawnCloud();
+        float posX = transform.position.x;
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        SpawnCloudsOnStart(posX);
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (timer < cloudSpawnDelay)
-            timer += Time.deltaTime;
-        else
-        {
-            SpawnCloud();
-            timer = 0f;
-        }
+        _logic.Timer(ref _timer, _cloudSpawnDelay, SpawnCloud);
     }
 
+    private void SpawnCloudsOnStart(float posXToStop)
+    {
+        transform.position = new Vector3(_logic.DeadZone, transform.position.y, transform.position.z);
+        while (transform.position.x < posXToStop)
+        {
+            SpawnCloud();
+            transform.position = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z);
+        }
+
+    }
     void SpawnCloud()
     {
-        float lowestPoint = transform.position.y - cloudSpawnOffset;
-        float highestPoint = transform.position.y + cloudSpawnOffset;
+        var range = _logic.DefineSpawnRange(transform.position.y, _cloudSpawnOffset);
+        float lowestPoint = range[0];
+        float highestPoint = range[1];
 
-        float farthestPoint = transform.position.z - cloudSpawnOffset;
-        float closestPoint = transform.position.z + cloudSpawnOffset;
+        range = _logic.DefineSpawnRange(transform.position.z, _cloudSpawnOffset * 2);//range by position z can be wider
+        float closestPoint = range[0];
+        float farthestPoint = range[1];
 
         int childCount = clouds.transform.childCount;
 
         Vector3 pos = new Vector3(
             transform.position.x,
             Random.Range(lowestPoint, highestPoint),
-            Random.Range(farthestPoint, closestPoint));
+            Random.Range(closestPoint, farthestPoint));
 
         var cloudClone = Instantiate(clouds.transform.GetChild(Random.Range(0, childCount)), pos, transform.rotation);
         cloudClone.transform.parent = cloudContainer.transform;

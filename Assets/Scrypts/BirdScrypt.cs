@@ -1,14 +1,15 @@
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BirdScrypt : MonoBehaviour
 {
-    private Rigidbody2D myRigidBody2D;
-    public Sprite[] sprites;
     public float flapStrength;
     public bool birdIsAlive = true;
-    private LogicScrypt logic;
-    private SpriteRenderer spriteRenderer;
+    public Sprite[] sprites;
+    private Rigidbody2D _myRigidBody2D;
+    private LogicScrypt _logic;
+    private SpriteRenderer _spriteRenderer;
     private enum BirdSkins
     {
         UsualBird,
@@ -19,37 +20,37 @@ public class BirdScrypt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myRigidBody2D = GetComponent<Rigidbody2D>();
+        _myRigidBody2D = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().sprite = sprites[(short)BirdSkins.UsualBird];
-        logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
-        spriteRenderer = GameObject.FindWithTag("Bird").GetComponent<SpriteRenderer>();
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        _spriteRenderer = GameObject.FindWithTag("Bird").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     async void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left)) && birdIsAlive)
         {
-            myRigidBody2D.velocity = Vector2.up * flapStrength;
+            _myRigidBody2D.velocity = Vector2.up * flapStrength;
             await ChangeSkin();
         }
     }
     private async Task ChangeSkin(BirdSkins skin = BirdSkins.FlappyBird)
     {
         if (skin == BirdSkins.FlappyBird)
-            spriteRenderer.sprite = sprites[((short)skin)];
+            _spriteRenderer.sprite = sprites[((short)skin)];
         else
         {
-            spriteRenderer.sprite = sprites[((short)skin)];
+            _spriteRenderer.sprite = sprites[((short)skin)];
             return;
         }
         await Task.Delay(200);//the time in miliseconds before the bird changes its skin backward
-        spriteRenderer.sprite = sprites[(short)BirdSkins.UsualBird];
+        _spriteRenderer.sprite = sprites[(short)BirdSkins.UsualBird];
     }
     private async void OnCollisionEnter2D(Collision2D collision)
     {
         await ChangeSkin(BirdSkins.DeadBird);
         birdIsAlive = false;
-        logic.GameOver();
+        _logic.GameOver();
     }
 }

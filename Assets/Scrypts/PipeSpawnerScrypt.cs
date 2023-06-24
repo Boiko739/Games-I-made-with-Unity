@@ -1,41 +1,33 @@
 using UnityEngine;
+using static LogicScrypt;
 
 public class PipeSpawnerScrypt : MonoBehaviour
 {
-    public GameObject pipe;
     public float pipeSpawnDelay = 2f;
-    private float timer = 0f;
-    private float pipeSpawnOffset = 4f;
+    private float _pipeSpawnOffset = 4f;
+    private float _timer;
+    public GameObject pipe;
     public GameObject pipeContainer;
-    private LogicScrypt logic;
+    private LogicScrypt _logic;
 
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
         SpawnPipe();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer < pipeSpawnDelay)
-            timer += Time.deltaTime;
-        else
-        {
-            SpawnPipe();
-            timer = 0f;
-        }
+        _logic.Timer(ref _timer, pipeSpawnDelay, SpawnPipe);
     }
-    void SpawnPipe()
+    
+    private void SpawnPipe()
     {
-        float lowestPoint = 0f;
-        float highestPoint = 0f;
-        if (logic.playerScore < 10)
-        {
-            lowestPoint = transform.position.y - pipeSpawnOffset;
-            highestPoint = transform.position.y + pipeSpawnOffset;
-        }
+        var range = _logic.DefineSpawnRange(transform.position.y, _pipeSpawnOffset);
+        float lowestPoint = range[0];
+        float highestPoint = range[1];
 
         Vector3 pos = new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0);
 

@@ -179,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176182688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23, y: 3, z: 100}
+  m_LocalPosition: {x: 23, y: 2, z: 70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,7 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae37b47c9ebd1184c9974b7240668755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudSpawnDelay: 0.6
   clouds: {fileID: 6054569363724889211, guid: d050a96335f275644bc361e450b032a3, type: 3}
   cloudContainer: {fileID: 18810285}
 --- !u!1 &428682686
@@ -546,12 +545,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b65ed9c4fdd874a84e7d54d410f7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flapStrength: 15
+  birdIsAlive: 1
   sprites:
   - {fileID: 569206220, guid: 59337a7648349114eb7d03fb977910df, type: 3}
   - {fileID: -1172173799, guid: 59337a7648349114eb7d03fb977910df, type: 3}
   - {fileID: -929915937, guid: 59337a7648349114eb7d03fb977910df, type: 3}
-  flapStrength: 15
-  birdIsAlive: 1
 --- !u!1 &677601856
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,10 +661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScore: 0
-  pipeMoveSpeed: 10
-  cloudMoveSpeed: 50
-  deadZone: -30
-  scoreToAdd: 1
   scoreText: {fileID: 858429233}
   gameOverScreen: {fileID: 1701062360}
 --- !u!4 &764901754
@@ -1075,8 +1070,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190a3c9b7a9d3540848e57555916c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pipe: {fileID: 3410607188487633486, guid: 47b0c7a3bcc1ff24183a986279edeee1, type: 3}
   pipeSpawnDelay: 2
+  pipe: {fileID: 3410607188487633486, guid: 47b0c7a3bcc1ff24183a986279edeee1, type: 3}
   pipeContainer: {fileID: 1041347765}
 --- !u!4 &1856510711
 Transform:
