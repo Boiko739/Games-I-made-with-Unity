@@ -29,7 +29,13 @@ public class BirdScrypt : MonoBehaviour
     // Update is called once per frame
     async void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left)) && birdIsAlive)
+        if (!_logic.GameIsOn && transform.position.y <= 0)
+        {
+            _myRigidBody2D.velocity = Vector2.up * flapStrength / 2f;
+            await ChangeSkin();
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left) && birdIsAlive)
         {
             _myRigidBody2D.velocity = Vector2.up * flapStrength;
             await ChangeSkin();
@@ -45,7 +51,9 @@ public class BirdScrypt : MonoBehaviour
             return;
         }
         await Task.Delay(200);//the time in miliseconds before the bird changes its skin backward
-        _spriteRenderer.sprite = sprites[(short)BirdSkins.UsualBird];
+
+        if (birdIsAlive)
+            _spriteRenderer.sprite = sprites[(short)BirdSkins.UsualBird];
     }
     private async void OnCollisionEnter2D(Collision2D collision)
     {

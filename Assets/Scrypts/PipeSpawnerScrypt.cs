@@ -1,5 +1,4 @@
 using UnityEngine;
-using static LogicScrypt;
 
 public class PipeSpawnerScrypt : MonoBehaviour
 {
@@ -13,8 +12,8 @@ public class PipeSpawnerScrypt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(false);
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
-        SpawnPipe();
     }
 
     // Update is called once per frame

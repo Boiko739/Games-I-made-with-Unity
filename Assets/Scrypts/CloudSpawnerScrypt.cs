@@ -39,7 +39,7 @@ public class CloudSpawnerScrypt : MonoBehaviour
         float lowestPoint = range[0];
         float highestPoint = range[1];
 
-        range = _logic.DefineSpawnRange(transform.position.z, _cloudSpawnOffset * 2);//range by position z can be wider
+        range = _logic.DefineSpawnRange(transform.position.z, _cloudSpawnOffset * 3);//range by position z can be wider than the standart offset imho
         float closestPoint = range[0];
         float farthestPoint = range[1];
 
