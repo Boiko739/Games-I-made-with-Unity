@@ -3,20 +3,17 @@ using UnityEngine;
 public class CloudSpawnerScrypt : MonoBehaviour
 {
     private float _cloudSpawnDelay = 1f;
-    private float _cloudSpawnOffset = 7f;
+    private float _cloudSpawnOffset = 6f;
     private float _timer;
+    private LogicScrypt _logic;
     public GameObject clouds;
     public GameObject cloudContainer;
-    private LogicScrypt _logic;
     // Start is called before the first frame update
     void Start()
     {
-        float posX = transform.position.x;
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
-        SpawnCloudsOnStart(posX);
+        SpawnCloudsOnStart(transform.position.x);
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -35,22 +32,28 @@ public class CloudSpawnerScrypt : MonoBehaviour
     }
     void SpawnCloud()
     {
-        var range = _logic.DefineSpawnRange(transform.position.y, _cloudSpawnOffset);
-        float lowestPoint = range[0];
-        float highestPoint = range[1];
+        float lowestPoint;
+        float highestPoint;
+        float closestPoint;
+        float farthestPoint;
+        var trPos = transform.position;
 
-        range = _logic.DefineSpawnRange(transform.position.z, _cloudSpawnOffset * 3);//range by position z can be wider than the standart offset imho
-        float closestPoint = range[0];
-        float farthestPoint = range[1];
+        var range = _logic.DefineSpawnRange(trPos.y, _cloudSpawnOffset);
+        lowestPoint = range[0];
+        highestPoint = range[1];
 
-        int childCount = clouds.transform.childCount;
+        range = _logic.DefineSpawnRange(trPos.z, _cloudSpawnOffset * 3);//3 because range by z position can
+                                                                        //be wider than the offset by y pos imho
+        closestPoint = range[0];
+        farthestPoint = range[1];
 
         Vector3 pos = new Vector3(
-            transform.position.x,
+            trPos.x,
             Random.Range(lowestPoint, highestPoint),
             Random.Range(closestPoint, farthestPoint));
 
-        var cloudClone = Instantiate(clouds.transform.GetChild(Random.Range(0, childCount)), pos, transform.rotation);
+        var cloudClone = Instantiate(clouds.transform.GetChild
+                        (Random.Range(0, clouds.transform.childCount)), pos, transform.rotation);
         cloudClone.transform.parent = cloudContainer.transform;
     }
 }

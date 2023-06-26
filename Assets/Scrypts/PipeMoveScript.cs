@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class PipeMoveScript : MonoBehaviour
 {
-    public float pipeMoveSpeed = 10f;
     private LogicScrypt _logic;
+
+    private float _pipeMoveSpeed = 10f;
+
+    public float PipeMoveSpeed { get => _pipeMoveSpeed; set => _pipeMoveSpeed = value; }
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
     }
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.position += (Vector3.left * pipeMoveSpeed) * Time.deltaTime;
+        transform.position += Vector3.left * PipeMoveSpeed * Time.deltaTime;
         if (transform.position.x < _logic.DeadZone)
             Destroy(gameObject);
+    }
+    public void IncreaseSpeed(LogicScrypt ls)
+    {
+        GetComponent<PipeMoveScript>().PipeMoveSpeed += ls.ScoreToAdd / 10f;
     }
 }

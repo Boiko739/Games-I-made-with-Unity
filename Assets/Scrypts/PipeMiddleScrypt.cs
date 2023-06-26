@@ -8,12 +8,6 @@ public class PipeMiddleScrypt : MonoBehaviour
     {
         _logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScrypt>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 3)

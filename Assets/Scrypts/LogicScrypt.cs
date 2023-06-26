@@ -12,6 +12,7 @@ public class LogicScrypt : MonoBehaviour
     public Text textClickToPlay;
     public GameObject pipeSpawner;
     public GameObject gameOverScreen;
+    public GameObject pipes;
 
     #endregion ReferencesRegion
 
@@ -20,15 +21,19 @@ public class LogicScrypt : MonoBehaviour
     private int _playerScore = 0;
     private short _scoreToAdd = 1;
     private float _timer = 0f;
-    private bool _textClickToPlayIsEnabled = false;
     private short _deadZone = -30;
+    private int _maxScoreToIncreaseSpeed = 50;
+    private bool _textClickToPlayIsEnabled = false;
     private bool _gameIsOn = false;
 
     #endregion VariablesRegion
 
     public delegate void SpawnDelegate();
-    public float DeadZone { get => _deadZone; }
+    public int PlayerScore { get => _playerScore; set => _playerScore = value; }
     public bool GameIsOn { get => _gameIsOn; }
+    public float DeadZone { get => _deadZone; }
+    public short ScoreToAdd { get => _scoreToAdd; }
+
     private void Update()
     {
         if (!_gameIsOn)
@@ -39,9 +44,7 @@ public class LogicScrypt : MonoBehaviour
                 _gameIsOn = true;
             }
             if (!_textClickToPlayIsEnabled)
-            {
                 Timer(ref _timer, 3f, ShowHintHowToPlay, true);
-            }
         }
     }
     private async void ShowHintHowToPlay()
@@ -56,20 +59,25 @@ public class LogicScrypt : MonoBehaviour
         }
         textClickToPlay.enabled = false;
     }
+
+    [ContextMenu("Increase Score")]
     public void AddScore()
     {
-        _playerScore += _scoreToAdd;
-        scoreText.text = _playerScore.ToString();
-    }
+        PlayerScore += ScoreToAdd;
+        scoreText.text = PlayerScore.ToString();
+        if (PlayerScore <= _maxScoreToIncreaseSpeed)
+            pipes.GetComponent<PipeMoveScript>().IncreaseSpeed(this);
+    } 
     public void RestartGame()
     {
+        pipes.GetComponent<PipeMoveScript>().PipeMoveSpeed = 10f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
     }
-    
+
     /// <summary>
     /// Returns the lowest/closest and the highest/farthest points for spawning depends on player csore
     /// </summary>
@@ -79,17 +87,13 @@ public class LogicScrypt : MonoBehaviour
     public float[] DefineSpawnRange(float posY, float spawnOffset)
     {
         float[] range = new float[2];
-        if (_playerScore < 20)
-        {
-            range[0] = posY - spawnOffset;
-            range[1] = posY + spawnOffset;
-        }
-        else
-        {
+
+        if (PlayerScore > 20)
             spawnOffset += 1.5f;
-            range[0] = posY - spawnOffset;
-            range[1] = posY + spawnOffset;
-        }
+
+        range[0] = posY - spawnOffset;
+        range[1] = posY + spawnOffset;
+
         return range;
     }
 
