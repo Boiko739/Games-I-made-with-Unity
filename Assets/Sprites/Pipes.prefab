@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2e30fd67c977943a6ca2d7af046413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logic: {fileID: 0}
 --- !u!61 &3410607187027905688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -306,7 +305,7 @@ GameObject:
   - component: {fileID: 3410607188487633481}
   m_Layer: 0
   m_Name: Pipes
-  m_TagString: Untagged
+  m_TagString: Pipes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,5 +340,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422a94e0a369f1c4ea0bc32f70fd92f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
-  deadZone: -14
+  _pipeMoveSpeed: 10
