@@ -35,6 +35,11 @@ public class BirdScrypt : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left) && _birdIsAlive)
             Flap();
     }
+    private void OnBecameInvisible()
+    {
+        if (_logic != null)
+            OnCollisionEnter2D(new Collision2D());
+    }
     private async void Flap(short divider = 1)
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.up * _flapStrength / divider;
