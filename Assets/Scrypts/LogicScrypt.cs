@@ -98,30 +98,11 @@ public class LogicScrypt : MonoBehaviour
     }
     private void LoadHighScore()
     {
-        string path = Directory.GetCurrentDirectory() + "\\HighScore.txt";
-        if (!File.Exists(path))
-        {
-            // Create a file to write to.
-            using (sw = File.CreateText(path))
-            {
-                sw.WriteLine(HighScore.ToString());
-            }
-        }
-
-        // Open the file to read from.
-        using (StreamReader sr = File.OpenText(path))
-        {
-            HighScore = int.Parse(sr.ReadLine());
-        }
+        HighScore = PlayerPrefs.GetInt("HighScore");
     }
     private void SaveHighScore()
     {
-        string path = Directory.GetCurrentDirectory() + "\\HighScore.txt";
-
-        using (sw = new StreamWriter(path, false, System.Text.Encoding.UTF8))
-        {
-            sw.WriteLine(HighScore);
-        }
+        PlayerPrefs.SetInt("HighScore", HighScore);
     }
 
     /// <summary>
