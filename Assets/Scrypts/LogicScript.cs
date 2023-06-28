@@ -1,13 +1,10 @@
-using System.Collections;
-using System.IO;
-using System;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LogicScrypt : MonoBehaviour
+public class LogicScript : MonoBehaviour
 {
     #region ReferencesRegion
 

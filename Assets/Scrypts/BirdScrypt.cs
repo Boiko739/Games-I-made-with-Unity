@@ -7,7 +7,7 @@ public class BirdScrypt : MonoBehaviour
     private float _flapStrength = 12;
     private int _timeToChangeSkin = 200;
     private bool _birdIsAlive = true;
-    private LogicScrypt _logic;
+    private LogicScript _logic;
     private SpriteRenderer _spriteRenderer;
     public Sprite[] sprites;
 
@@ -23,7 +23,7 @@ public class BirdScrypt : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = sprites[(short)BirdSkins.UsualBird];
 
-        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
         _spriteRenderer = GameObject.FindWithTag("Bird").GetComponent<SpriteRenderer>();
     }
 

@@ -5,13 +5,13 @@ public class CloudSpawnerScrypt : MonoBehaviour
     private float _cloudSpawnDelay = 1f;
     private float _cloudSpawnOffset = 6f;
     private FunctionTimer _timer;
-    private LogicScrypt _logic;
+    private LogicScript _logic;
     public GameObject clouds;
     public GameObject cloudContainer;
     // Start is called before the first frame update
     void Start()
     {
-        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
         SpawnCloudsOnStart(transform.position.x);
     }
     // Update is called once per frame

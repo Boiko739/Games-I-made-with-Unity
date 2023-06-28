@@ -7,13 +7,13 @@ public class PipeSpawnerScrypt : MonoBehaviour
     private FunctionTimer _timer;
     public GameObject pipe;
     public GameObject pipeContainer;
-    private LogicScrypt _logic;
+    private LogicScript _logic;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
-        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
     }
 
     // Update is called once per frame

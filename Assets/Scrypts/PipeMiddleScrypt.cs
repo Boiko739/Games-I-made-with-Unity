@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PipeMiddleScrypt : MonoBehaviour
 {
-    private LogicScrypt _logic;
+    private LogicScript _logic;
     // Start is called before the first frame update
     void Start()
     {
-        _logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScrypt>();
+        _logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

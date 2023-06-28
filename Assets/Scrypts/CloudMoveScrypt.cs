@@ -5,11 +5,11 @@ using UnityEngine;
 public class CloudMoveScrypt : MonoBehaviour
 {
     private float _cloudMoveSpeed = 5f;
-    private LogicScrypt _logic;
+    private LogicScript _logic;
     // Start is called before the first frame update
     void Start()
     {
-        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScrypt>();
+        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
     }
 
     // Update is called once per frame
