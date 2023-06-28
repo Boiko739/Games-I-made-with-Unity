@@ -1,3 +1,4 @@
+using System.IO;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,23 +9,19 @@ public class LogicScrypt : MonoBehaviour
 {
     #region ReferencesRegion
 
-    public Text scoreText;
-    public Text textClickToPlay;
-    public GameObject pipeSpawner;
-    public GameObject gameOverScreen;
-    public GameObject pipes;
+    public Text scoreText, textClickToPlay, highScoreText;
+    public GameObject pipeSpawner, gameOverScreen, pipes;
 
     #endregion ReferencesRegion
 
     #region VariablesRegion
 
-    private int _playerScore = 0;
-    private short _scoreToAdd = 1;
+    private static int HighScore;
+    private int _playerScore = 0, _maxScoreToIncreaseSpeed = 50;
+    private short _scoreToAdd = 1, _deadZone = -30;
     private float _timer = 0f;
-    private short _deadZone = -30;
-    private int _maxScoreToIncreaseSpeed = 50;
-    private bool _textClickToPlayIsEnabled = false;
-    private bool _gameIsOn = false;
+    private bool _textClickToPlayIsEnabled = false, _gameIsOn = false;
+    private StreamWriter sw;
 
     #endregion VariablesRegion
 
@@ -34,6 +31,11 @@ public class LogicScrypt : MonoBehaviour
     public float DeadZone { get => _deadZone; }
     public short ScoreToAdd { get => _scoreToAdd; }
 
+    private void Start()
+    {
+        LoadHighScore();
+        ShowScore();
+    }
     private void Update()
     {
         if (!_gameIsOn)
@@ -51,11 +53,14 @@ public class LogicScrypt : MonoBehaviour
     {
         while (!_gameIsOn)
         {
-            if (textClickToPlay.enabled)
-                textClickToPlay.enabled = false;
-            else
-                textClickToPlay.enabled = true;
-            await Task.Delay(800);//how fast the text has to flash
+            if (textClickToPlay != null)
+            {
+                if (textClickToPlay.enabled)
+                    textClickToPlay.enabled = false;
+                else
+                    textClickToPlay.enabled = true;
+            }
+            await Task.Delay(900);//how fast the text has to flash
         }
         textClickToPlay.enabled = false;
     }
@@ -64,10 +69,24 @@ public class LogicScrypt : MonoBehaviour
     public void AddScore()
     {
         PlayerScore += ScoreToAdd;
-        scoreText.text = PlayerScore.ToString();
+        ShowScore();
         if (PlayerScore <= _maxScoreToIncreaseSpeed)
             pipes.GetComponent<PipeMoveScript>().IncreaseSpeed(this);
-    } 
+    }
+
+    /// <summary>
+    /// Also updates highscore
+    /// </summary>
+    private void ShowScore()
+    {
+        scoreText.text = PlayerScore.ToString();
+        if (PlayerScore > HighScore)
+        {
+            HighScore = PlayerScore;
+            SaveHighScore();
+        }
+        highScoreText.text = $"Best score\n{HighScore}";
+    }
     public void RestartGame()
     {
         pipes.GetComponent<PipeMoveScript>().PipeMoveSpeed = 10f;
@@ -76,6 +95,33 @@ public class LogicScrypt : MonoBehaviour
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
+    }
+    private void LoadHighScore()
+    {
+        string path = Directory.GetCurrentDirectory() + "\\HighScore.txt";
+        if (!File.Exists(path))
+        {
+            // Create a file to write to.
+            using (sw = File.CreateText(path))
+            {
+                sw.WriteLine(HighScore.ToString());
+            }
+        }
+
+        // Open the file to read from.
+        using (StreamReader sr = File.OpenText(path))
+        {
+            HighScore = int.Parse(sr.ReadLine());
+        }
+    }
+    private void SaveHighScore()
+    {
+        string path = Directory.GetCurrentDirectory() + "\\HighScore.txt";
+
+        using (sw = new StreamWriter(path, false, System.Text.Encoding.UTF8))
+        {
+            sw.WriteLine(HighScore);
+        }
     }
 
     /// <summary>
