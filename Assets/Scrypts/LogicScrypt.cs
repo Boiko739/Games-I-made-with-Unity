@@ -1,4 +1,6 @@
+using System.Collections;
 using System.IO;
+using System;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +13,7 @@ public class LogicScrypt : MonoBehaviour
 
     public Text scoreText, textClickToPlay, highScoreText;
     public GameObject pipeSpawner, gameOverScreen, pipes;
+    private FunctionTimer _timer;
 
     #endregion ReferencesRegion
 
@@ -19,9 +22,8 @@ public class LogicScrypt : MonoBehaviour
     private static int HighScore;
     private int _playerScore = 0, _maxScoreToIncreaseSpeed = 50;
     private short _scoreToAdd = 1, _deadZone = -30;
-    private float _timer = 0f;
-    private bool _textClickToPlayIsEnabled = false, _gameIsOn = false;
-    private StreamWriter sw;
+    private float _showHintDelay = 2.5f;
+    private bool _gameIsOn = false;
 
     #endregion VariablesRegion
 
@@ -44,9 +46,9 @@ public class LogicScrypt : MonoBehaviour
             {
                 pipeSpawner.SetActive(true);
                 _gameIsOn = true;
+                return;
             }
-            if (!_textClickToPlayIsEnabled)
-                Timer(ref _timer, 3f, ShowHintHowToPlay, true);
+            FunctionTimer.StartAndUpdateTimer(ref _timer, _showHintDelay, ShowHintHowToPlay);
         }
     }
     private async void ShowHintHowToPlay()
@@ -122,34 +124,5 @@ public class LogicScrypt : MonoBehaviour
         range[1] = posY + spawnOffset;
 
         return range;
-    }
-
-    /// <summary>
-    /// Made for using inside Update() method
-    /// </summary>
-    /// <param name="timer"></param>
-    /// <param name="delay"></param>
-    /// <param name="doSmthReturnNth"></param>
-    /// <param name="forLogic"></param>
-    public void Timer(ref float timer, float delay, SpawnDelegate doSmthReturnNth, bool forLogic = false)
-    {
-        if (forLogic)
-        {
-            if (timer < delay)
-                timer += Time.deltaTime;
-            else
-            {
-                doSmthReturnNth();
-                _textClickToPlayIsEnabled = true;
-            }
-            return;
-        }
-        if (timer < delay)
-            timer += Time.deltaTime;
-        else
-        {
-            doSmthReturnNth();
-            timer = 0;
-        }
     }
 }

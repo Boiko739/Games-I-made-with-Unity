@@ -4,7 +4,7 @@ public class CloudSpawnerScrypt : MonoBehaviour
 {
     private float _cloudSpawnDelay = 1f;
     private float _cloudSpawnOffset = 6f;
-    private float _timer;
+    private FunctionTimer _timer;
     private LogicScrypt _logic;
     public GameObject clouds;
     public GameObject cloudContainer;
@@ -17,7 +17,7 @@ public class CloudSpawnerScrypt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _logic.Timer(ref _timer, _cloudSpawnDelay, SpawnCloud);
+        FunctionTimer.StartAndUpdateTimer(ref _timer, _cloudSpawnDelay, SpawnCloud);
     }
 
     private void SpawnCloudsOnStart(float posXToStop)

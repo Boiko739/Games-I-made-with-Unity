@@ -4,7 +4,7 @@ public class PipeSpawnerScrypt : MonoBehaviour
 {
     private float _pipeSpawnDelay = 2f;
     private float _pipeSpawnOffset = 4f;
-    private float _timer;
+    private FunctionTimer _timer;
     public GameObject pipe;
     public GameObject pipeContainer;
     private LogicScrypt _logic;
@@ -19,10 +19,10 @@ public class PipeSpawnerScrypt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _logic.Timer(ref _timer, _pipeSpawnDelay, SpawnPipe);
+        FunctionTimer.StartAndUpdateTimer(ref _timer, _pipeSpawnDelay, SpawnPipes);
     }
     
-    private void SpawnPipe()
+    private void SpawnPipes()
     {
         float lowestPoint;
         float highestPoint;

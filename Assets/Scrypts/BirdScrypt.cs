@@ -32,7 +32,7 @@ public class BirdScrypt : MonoBehaviour
     {
         if (!_logic.GameIsOn && transform.position.y <= 0)
             Flap(2);
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left) && _birdIsAlive)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left) && _birdIsAlive)
             Flap();
     }
     private void OnBecameInvisible()
@@ -47,17 +47,17 @@ public class BirdScrypt : MonoBehaviour
     }
     private async Task ChangeSkin(BirdSkins skin = BirdSkins.FlappyBird)
     {
-        if (_spriteRenderer != null)
-            _spriteRenderer.sprite = sprites[((short)skin)];
-        else return;
-
-        if (skin != BirdSkins.FlappyBird)
+        if (_spriteRenderer == null)
             return;
+        _spriteRenderer.sprite = sprites[((short)skin)];
 
-        await Task.Delay(_timeToChangeSkin);
+        if (skin == BirdSkins.FlappyBird)
+        {
+            await Task.Delay(_timeToChangeSkin);
 
-        if (_birdIsAlive)
-            await ChangeSkin(BirdSkins.UsualBird);
+            if (_birdIsAlive)
+                await ChangeSkin(BirdSkins.UsualBird);
+        }
     }
     private async void OnCollisionEnter2D(Collision2D collision)
     {
