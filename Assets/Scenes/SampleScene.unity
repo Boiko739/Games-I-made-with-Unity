@@ -123,6 +123,87 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!1 &18810285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 18810286}
+  m_Layer: 0
+  m_Name: CloudContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &18810286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18810285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -150, y: 211, z: 6.750408}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &176182688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176182689}
+  - component: {fileID: 176182690}
+  m_Layer: 0
+  m_Name: CloudSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &176182689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176182688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23, y: 3, z: 70}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &176182690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176182688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae37b47c9ebd1184c9974b7240668755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 2560074424292176870, guid: a49331ff429795e418298ed4ca32f736, type: 3}
+  clouds: {fileID: 6054569363724889211, guid: d050a96335f275644bc361e450b032a3, type: 3}
+  cloudContainer: {fileID: 18810285}
+>>>>>>> Stashed changes
 --- !u!1 &428682686
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +663,13 @@ MonoBehaviour:
   playerScore: 0
   scoreText: {fileID: 858429233}
   gameOverScreen: {fileID: 1701062360}
+<<<<<<< Updated upstream
   bird: {fileID: 548140764}
+=======
+  pipes: {fileID: 3410607188487633486, guid: 47b0c7a3bcc1ff24183a986279edeee1, type: 3}
+  scoreHandler: {fileID: 6674368998210627563, guid: b634b47ef6a833c4f834f1decb3f1676, type: 3}
+  _timer: {fileID: 2560074424292176870, guid: a49331ff429795e418298ed4ca32f736, type: 3}
+>>>>>>> Stashed changes
 --- !u!4 &764901754
 Transform:
   m_ObjectHideFlags: 0
@@ -959,6 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190a3c9b7a9d3540848e57555916c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 2560074424292176870, guid: a49331ff429795e418298ed4ca32f736, type: 3}
   pipe: {fileID: 3410607188487633486, guid: 47b0c7a3bcc1ff24183a986279edeee1, type: 3}
   spawnRate: 1.5
 --- !u!4 &1856510711
