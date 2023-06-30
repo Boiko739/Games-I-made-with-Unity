@@ -70,7 +70,7 @@ public class LogicScript : MonoBehaviour
     }
     public void RestartGame()
     {
-        pipes.GetComponent<PipeMoveScript>().PipeMoveSpeed = 10f;
+        pipes.GetComponent<PipeMoveScript>().moveSpeed = 10f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GameOver()
