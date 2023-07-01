@@ -1,2 +1,3 @@
 # MyFlappyBird
-My first video game, that was made with Unity Engine
+This is my first video game made with Unity Engine
+The concept of the game is familiar, but my goal is to create an architecturally complex game system, that will be easy to navigate, improve and edit.
