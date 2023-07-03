@@ -10,7 +10,7 @@ public class PipeMiddleScrypt : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 3)
-            _logic.AddScore();
+        if (collision.gameObject.layer == 3) {}
+            _logic.scoreHandler.GetComponent<ScoreHandlerScript>().AddScore();
     }
 }

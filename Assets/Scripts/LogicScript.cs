@@ -9,20 +9,21 @@ public class LogicScript : MonoBehaviour
     #region ReferencesRegion
 
     public Text scoreText, textClickToPlay, highScoreText;
-    public GameObject pipeSpawner, gameOverScreen, pipes;
+    public GameObject pipeSpawner, gameOverScreen, pipes, scoreHandler;
     private FunctionTimer _timer;
 
     #endregion ReferencesRegion
 
     #region VariablesRegion
 
-    private static int HighScore;
-    private int _playerScore = 0, _maxScoreToIncreaseSpeed = 50;
+    private int _playerScore = 0;
     private short _scoreToAdd = 1, _deadZone = -30;
     private float _showHintDelay = 2.5f;
     private bool _gameIsOn = false;
 
     #endregion VariablesRegion
+
+    #region PropsRegion
 
     public delegate void SpawnDelegate();
     public int PlayerScore { get => _playerScore; set => _playerScore = value; }
@@ -30,10 +31,11 @@ public class LogicScript : MonoBehaviour
     public float DeadZone { get => _deadZone; }
     public short ScoreToAdd { get => _scoreToAdd; }
 
+    #endregion PropsRegion
+
     private void Start()
     {
-        LoadHighScore();
-        ShowScore();
+
     }
     private void Update()
     {
@@ -64,28 +66,6 @@ public class LogicScript : MonoBehaviour
         textClickToPlay.enabled = false;
     }
 
-    [ContextMenu("Increase Score")]
-    public void AddScore()
-    {
-        PlayerScore += ScoreToAdd;
-        ShowScore();
-        if (PlayerScore <= _maxScoreToIncreaseSpeed)
-            pipes.GetComponent<PipeMoveScript>().IncreaseSpeed(this);
-    }
-
-    /// <summary>
-    /// Also updates highscore
-    /// </summary>
-    private void ShowScore()
-    {
-        scoreText.text = PlayerScore.ToString();
-        if (PlayerScore > HighScore)
-        {
-            HighScore = PlayerScore;
-            SaveHighScore();
-        }
-        highScoreText.text = $"Best score\n{HighScore}";
-    }
     public void RestartGame()
     {
         pipes.GetComponent<PipeMoveScript>().PipeMoveSpeed = 10f;
@@ -94,14 +74,6 @@ public class LogicScript : MonoBehaviour
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
-    }
-    private void LoadHighScore()
-    {
-        HighScore = PlayerPrefs.GetInt("HighScore");
-    }
-    private void SaveHighScore()
-    {
-        PlayerPrefs.SetInt("HighScore", HighScore);
     }
 
     /// <summary>
