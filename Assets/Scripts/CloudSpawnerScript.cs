@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CloudSpawnerScript : MonoBehaviour
 {
+<<<<<<< Updated upstream:Assets/Scripts/CloudSpawnerScript.cs
     private float _cloudSpawnDelay = 1f;
     private float _cloudSpawnOffset = 6f;
     public FunctionTimerScript timer;
@@ -9,16 +10,27 @@ public class CloudSpawnerScript : MonoBehaviour
     public GameObject clouds;
     public GameObject cloudContainer;
 
+=======
+    private float _cloudSpawnDelay = 1f, _cloudSpawnOffset = 6f;
+    private FunctionTimer _timer;
+    private LogicScript _logic;
+    public GameObject clouds, cloudContainer;
+>>>>>>> Stashed changes:Assets/Scripts/CloudSpawnerScrypt.cs
     // Start is called before the first frame update
     void Start()
     {
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
+        _timer = gameObject.AddComponent<FunctionTimer>();
         SpawnCloudsOnStart(transform.position.x);
     }
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream:Assets/Scripts/CloudSpawnerScript.cs
         timer.StartAndUpdateTimer(ref timer, _cloudSpawnDelay, SpawnCloud);
+=======
+        //_timer.StartAndUpdateTimer(_cloudSpawnDelay, SpawnCloud);
+>>>>>>> Stashed changes:Assets/Scripts/CloudSpawnerScrypt.cs
     }
 
     private void SpawnCloudsOnStart(float posXToStop)

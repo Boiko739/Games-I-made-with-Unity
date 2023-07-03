@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+using System;
+using System.Collections;
+>>>>>>> Stashed changes
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,8 +13,13 @@ public class LogicScript : MonoBehaviour
     #region ReferencesRegion
 
     public Text scoreText, textClickToPlay, highScoreText;
+<<<<<<< Updated upstream
     public GameObject pipeSpawner, gameOverScreen, pipes, scoreHandler;
     public FunctionTimerScript _timer; 
+=======
+    public GameObject pipeSpawner, gameOverScreen, pipes;
+    public ScoreHandler scoreHandler;
+>>>>>>> Stashed changes
 
     #endregion ReferencesRegion
 
@@ -18,8 +28,12 @@ public class LogicScript : MonoBehaviour
     private int _playerScore = 0;
     private short _scoreToAdd = 1, _deadZone = -30;
     private float _showHintDelay = 2.5f;
+<<<<<<< Updated upstream
     private bool _gameIsOn = false;
     private bool _hintIsShowing = false;
+=======
+    private bool _gameIsOn = false, _hintIsShowing = false;
+>>>>>>> Stashed changes
 
     #endregion VariablesRegion
 
@@ -32,11 +46,18 @@ public class LogicScript : MonoBehaviour
 
     #endregion PropsRegion
 
+<<<<<<< Updated upstream
     private void Start()
     {
         var sh = scoreHandler.GetComponent<ScoreHandlerScript>();
         sh.LoadHighScore();
         sh.ShowScore();
+=======
+
+    private void Start()
+    {
+
+>>>>>>> Stashed changes
     }
     private void Update()
     {
@@ -46,8 +67,12 @@ public class LogicScript : MonoBehaviour
             {
                 pipeSpawner.SetActive(true);
                 _gameIsOn = true;
+
+                scoreHandler = GameObject.FindWithTag("ScoreHandler").GetComponent<ScoreHandler>();
+
                 return;
             }
+<<<<<<< Updated upstream
             if (!_gameIsOn && !_hintIsShowing)
                 _timer.StartAndUpdateTimer(ref _timer, _showHintDelay, ShowHintHowToPlay);
         }
@@ -68,6 +93,36 @@ public class LogicScript : MonoBehaviour
             textClickToPlay.enabled = false;
         }
     }
+=======
+            else if (!_gameIsOn && !_hintIsShowing)
+                StartCoroutine(CoroutineWait(_showHintDelay, ShowHintHowToPlay));
+        }
+    }
+    public IEnumerator CoroutineWait(float delay, Action action = null)
+    {
+        yield return new WaitForSeconds(delay);
+        if (action != null)
+            action();
+    }
+    private void ShowHintHowToPlay()
+    {
+        _hintIsShowing = true;
+        while (!_gameIsOn)
+        {
+            if (textClickToPlay != null)
+            {
+                if (textClickToPlay.enabled)
+                    textClickToPlay.enabled = false;
+                else
+                    textClickToPlay.enabled = true;
+            }
+            StartCoroutine(CoroutineWait(2f));//how fast the text has to flash
+        }
+        _hintIsShowing = false;
+        textClickToPlay.enabled = false;
+    }
+
+>>>>>>> Stashed changes
     public void RestartGame()
     {
         pipes.GetComponent<PipeMoveScript>().PipeMoveSpeed = 10f;

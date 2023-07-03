@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Logic
+<<<<<<< Updated upstream
+=======
+  - Bird
+  - Pipes
+  - ScoreHandler
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
