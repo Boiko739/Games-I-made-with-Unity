@@ -21,7 +21,7 @@ public class PipeSpawnerScrypt : MonoBehaviour
     {
         FunctionTimer.StartAndUpdateTimer(ref _timer, _pipeSpawnDelay, SpawnPipes);
     }
-    
+
     private void SpawnPipes()
     {
         float lowestPoint;

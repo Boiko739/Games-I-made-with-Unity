@@ -14,7 +14,7 @@ public class LogicScript : MonoBehaviour
 
     #endregion ReferencesRegion
 
-    #region VariablesRegion
+    #region VariablesRegionKE
 
     private int _playerScore = 0;
     private short _scoreToAdd = 1, _deadZone = -30;
