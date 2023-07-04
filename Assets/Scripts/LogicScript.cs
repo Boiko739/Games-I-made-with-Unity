@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +9,6 @@ public class LogicScript : MonoBehaviour
 
     public Text scoreText, textClickToPlay, highScoreText;
     public GameObject pipeSpawner, gameOverScreen, pipes, scoreHandler;
-    private FunctionTimer _timer;
 
     #endregion ReferencesRegion
 
@@ -18,8 +16,11 @@ public class LogicScript : MonoBehaviour
 
     private int _playerScore = 0;
     private short _scoreToAdd = 1, _deadZone = -30;
-    private float _showHintDelay = 2.5f;
+    private float _showHintDelayAfterStart = 2.5f;
+    private float _flashHintDelay = 1f;
+    private bool _hintIsShowing = false;
     private bool _gameIsOn = false;
+    private FunctionTimer _timer;
 
     #endregion VariablesRegion
 
@@ -27,9 +28,10 @@ public class LogicScript : MonoBehaviour
 
     public delegate void SpawnDelegate();
     public int PlayerScore { get => _playerScore; set => _playerScore = value; }
-    public bool GameIsOn { get => _gameIsOn; }
+    public bool GameIsOn { get => _gameIsOn; private set => _gameIsOn = value; }
     public float DeadZone { get => _deadZone; }
     public short ScoreToAdd { get => _scoreToAdd; }
+    public bool HintIsShowing { get => _hintIsShowing; set => _hintIsShowing = value; }
 
     #endregion PropsRegion
 
@@ -44,32 +46,44 @@ public class LogicScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left))
             {
                 pipeSpawner.SetActive(true);
-                _gameIsOn = true;
+                GameIsOn = true;
+                HintIsShowing = false;
+                pipes.GetComponent<PipeSpawnerScrypt>().SpawnPipes();
                 return;
             }
-            FunctionTimer.StartAndUpdateTimer(ref _timer, _showHintDelay, ShowHintHowToPlay);
-        }
-    }
-    private async void ShowHintHowToPlay()
-    {
-        while (!_gameIsOn)
-        {
-            if (textClickToPlay != null)
+            if (!HintIsShowing)
             {
-                if (textClickToPlay.enabled)
-                    textClickToPlay.enabled = false;
-                else
-                    textClickToPlay.enabled = true;
+                FunctionTimer.StartAndUpdateTimer(ref _timer, _showHintDelayAfterStart, SetHintIsShowingToTrue);
+                if (HintIsShowing)
+                    _timer = null;
             }
-            await Task.Delay(900);//how fast the text has to flash
         }
-        textClickToPlay.enabled = false;
-    }
+        if (HintIsShowing)
+            FlashHint();
+        else textClickToPlay.enabled = false;
 
+    }
+    private void SetHintIsShowingToTrue()
+    {
+        HintIsShowing = true;
+    }
+    private void FlashHint()
+    {
+        if (!GameIsOn && textClickToPlay != null)
+        {
+            FunctionTimer.StartAndUpdateTimer(ref _timer, _flashHintDelay, SwitchTextCondition);
+        }
+        else
+            HintIsShowing = false;
+    }
+    private void SwitchTextCondition()
+    {
+        textClickToPlay.enabled = !textClickToPlay.enabled;
+    }
     public void RestartGame()
     {
-        pipes.GetComponent<PipeMoveScript>().PipeMoveSpeed = 10f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        pipes.GetComponent<PipeMoveScript>().ResetSpeed();
     }
     public void GameOver()
     {
@@ -77,7 +91,7 @@ public class LogicScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the lowest/closest and the highest/farthest points for spawning depends on player csore
+    /// Returns the lowest, closest and the highest, farthest points for spawning depends on player csore
     /// </summary>
     /// <param name="posY"></param>
     /// <param name="spawnOffset"></param>

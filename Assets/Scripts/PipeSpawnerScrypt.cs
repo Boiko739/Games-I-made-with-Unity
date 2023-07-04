@@ -22,7 +22,7 @@ public class PipeSpawnerScrypt : MonoBehaviour
         FunctionTimer.StartAndUpdateTimer(ref _timer, _pipeSpawnDelay, SpawnPipes);
     }
 
-    private void SpawnPipes()
+    public void SpawnPipes()
     {
         float lowestPoint;
         float highestPoint;
@@ -31,7 +31,7 @@ public class PipeSpawnerScrypt : MonoBehaviour
         lowestPoint = range[0];
         highestPoint = range[1];
 
-        Vector3 pos = new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0);
+        Vector3 pos = new(transform.position.x, Random.Range(lowestPoint, highestPoint), 0);
 
         var pipeClone = Instantiate(pipe, pos, transform.rotation);
         pipeClone.transform.parent = pipeContainer.transform;

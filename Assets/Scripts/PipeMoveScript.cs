@@ -4,6 +4,7 @@ public class PipeMoveScript : MonoBehaviour
 {
     private LogicScript _logic;
 
+    private const float PIPE_MOVE_SPEED = 10f;
     private float _pipeMoveSpeed = 10f;
 
     public float PipeMoveSpeed { get => _pipeMoveSpeed; set => _pipeMoveSpeed = value; }
@@ -23,5 +24,9 @@ public class PipeMoveScript : MonoBehaviour
     public void IncreaseSpeed(LogicScript ls)
     {
         GetComponent<PipeMoveScript>().PipeMoveSpeed += ls.ScoreToAdd / 10f;
+    }
+    public void ResetSpeed()
+    {
+        PipeMoveSpeed = PIPE_MOVE_SPEED;
     }
 }
