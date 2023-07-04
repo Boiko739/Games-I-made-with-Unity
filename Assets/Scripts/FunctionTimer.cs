@@ -3,24 +3,27 @@ using UnityEngine;
 
 public class FunctionTimer
 {
-    private Action action;
-    private float inputTimer;
-    private float timer;
+    private Action _action;
+    private float _inputTimer;
+    private float _timer;
+    private bool _once;
 
     public FunctionTimer(Action action, float timer)
     {
-        this.action = action;
-        this.timer = timer;
-        inputTimer = timer;
+        _action = action;
+        _timer = timer;
+        _inputTimer = timer;;
     }
 
     public void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
         {
-            action();
-            timer = inputTimer;
+            if (_action != null) 
+                _action.Invoke();
+            if (!_once)
+                _timer = _inputTimer;
         }
     }
     public static void StartAndUpdateTimer(ref FunctionTimer timer, float delay, Action action)
