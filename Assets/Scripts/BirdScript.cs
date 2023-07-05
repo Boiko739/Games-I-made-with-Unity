@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BirdScrypt : MonoBehaviour
+public class BirdScript : MonoBehaviour
 {
     private float _flapStrength = 12;
     private int _timeToChangeSkin = 200;

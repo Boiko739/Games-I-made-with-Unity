@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CloudSpawnerScrypt : MonoBehaviour
+public class CloudSpawnerScript : MonoBehaviour
 {
     private float _cloudSpawnDelay = 1f;
     private float _cloudSpawnOffset = 6f;
@@ -8,6 +8,7 @@ public class CloudSpawnerScrypt : MonoBehaviour
     private LogicScript _logic;
     public GameObject clouds;
     public GameObject cloudContainer;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PipeMiddleScrypt : MonoBehaviour
+public class PipeMiddleScript : MonoBehaviour
 {
     private LogicScript _logic;
     // Start is called before the first frame update

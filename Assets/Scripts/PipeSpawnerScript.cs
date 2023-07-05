@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PipeSpawnerScrypt : MonoBehaviour
+public class PipeSpawnerScript : MonoBehaviour
 {
     private float _pipeSpawnDelay = 2f;
     private float _pipeSpawnOffset = 4f;

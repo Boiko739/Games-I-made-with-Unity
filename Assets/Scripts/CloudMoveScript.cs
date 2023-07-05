@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CloudMoveScrypt : MonoBehaviour
+public class CloudMoveScript : MonoBehaviour
 {
     private float _cloudMoveSpeed = 5f;
     private LogicScript _logic;

@@ -48,7 +48,7 @@ public class LogicScript : MonoBehaviour
                 pipeSpawner.SetActive(true);
                 GameIsOn = true;
                 HintIsShowing = false;
-                pipeSpawner.GetComponent<PipeSpawnerScrypt>().SpawnPipes();
+                pipeSpawner.GetComponent<PipeSpawnerScript>().SpawnPipes();
                 return;
             }
             if (!HintIsShowing)
