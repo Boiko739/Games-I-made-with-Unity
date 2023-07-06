@@ -87,6 +87,10 @@ public class LogicScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         pipes.GetComponent<PipeMoveScript>().ResetSpeed();
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
     public void GameOver()
     {
         if (!gameOverScreen.IsUnityNull())
