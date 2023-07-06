@@ -12,12 +12,14 @@ public class LogicScript : MonoBehaviour
 
     #endregion ReferencesRegion
 
-    #region VariablesRegionKE
+    #region VariablesRegion
+
+    private const float SPAWN_OFFSET_INCREASER = 1.5f, SCORE_LIMIT_TO_COMPLICATE = 20f;
 
     private int _playerScore = 0;
     private short _scoreToAdd = 1, _deadZone = -30;
     private float _showHintDelayAfterStart = 2.5f;
-    private float _flashHintDelay = 1f;
+    private float _flashHintDelay = 1.5f;
     private bool _hintIsShowing = false;
     private bool _gameIsOn = false;
     private FunctionTimer _timer;
@@ -87,7 +89,8 @@ public class LogicScript : MonoBehaviour
     }
     public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        if (!gameOverScreen.IsUnityNull())
+            gameOverScreen.SetActive(true);
     }
 
     /// <summary>
@@ -100,8 +103,10 @@ public class LogicScript : MonoBehaviour
     {
         float[] range = new float[2];
 
-        if (PlayerScore > 20)
-            spawnOffset += 1.5f;
+        if (PlayerScore < SCORE_LIMIT_TO_COMPLICATE)
+            spawnOffset += SPAWN_OFFSET_INCREASER * (PlayerScore / SCORE_LIMIT_TO_COMPLICATE);
+        else
+            spawnOffset += SPAWN_OFFSET_INCREASER;
 
         range[0] = posY - spawnOffset;
         range[1] = posY + spawnOffset;
