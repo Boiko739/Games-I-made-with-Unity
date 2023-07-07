@@ -27,7 +27,7 @@ public class PipeSpawnerScript : MonoBehaviour
         float lowestPoint;
         float highestPoint;
 
-        var range = _logic.DefineSpawnRange(transform.position.y, _pipeSpawnOffset);
+        var range = _logic.DefineSpawnRange(transform.position.y, _pipeSpawnOffset, isPipe: true);
         lowestPoint = range[0];
         highestPoint = range[1];
 
