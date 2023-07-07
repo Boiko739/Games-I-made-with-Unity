@@ -16,8 +16,7 @@ public class LogicScript : MonoBehaviour
 
     private const float SPAWN_OFFSET_INCREASER = 1.5f, SCORE_LIMIT_TO_COMPLICATE = 20f;
 
-    private int _playerScore = 0;
-    private short _scoreToAdd = 1, _deadZone = -30;
+    private short _deadZone = -30;
     private float _showHintDelayAfterStart = 2.5f;
     private float _flashHintDelay = 1.5f;
     private bool _hintIsShowing = false;
@@ -29,10 +28,8 @@ public class LogicScript : MonoBehaviour
     #region PropsRegion
 
     public delegate void SpawnDelegate();
-    public int PlayerScore { get => _playerScore; set => _playerScore = value; }
     public bool GameIsOn { get => _gameIsOn; private set => _gameIsOn = value; }
     public float DeadZone { get => _deadZone; }
-    public short ScoreToAdd { get => _scoreToAdd; }
     public bool HintIsShowing { get => _hintIsShowing; set => _hintIsShowing = value; }
 
     #endregion PropsRegion
@@ -72,9 +69,7 @@ public class LogicScript : MonoBehaviour
     private void FlashHint()
     {
         if (!GameIsOn && textClickToPlay != null)
-        {
             FunctionTimer.StartAndUpdateTimer(ref _timer, _flashHintDelay, SwitchTextCondition);
-        }
         else
             HintIsShowing = false;
     }
@@ -100,20 +95,22 @@ public class LogicScript : MonoBehaviour
     /// <summary>
     /// Returns the lowest, closest and the highest, farthest points for spawning depends on player csore
     /// </summary>
-    /// <param name="posY"></param>
+    /// <param name="pos"></param>
     /// <param name="spawnOffset"></param>
     /// <returns></returns>
-    public float[] DefineSpawnRange(float posY, float spawnOffset)
+    public float[] DefineSpawnRange(float pos, float spawnOffset, bool isPipe = false)
     {
         float[] range = new float[2];
+        if (isPipe)
+        {
+            if (scoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore < SCORE_LIMIT_TO_COMPLICATE)
+                spawnOffset += SPAWN_OFFSET_INCREASER * (scoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore / SCORE_LIMIT_TO_COMPLICATE);
+            else
+                spawnOffset += SPAWN_OFFSET_INCREASER;
+        }
 
-        if (PlayerScore < SCORE_LIMIT_TO_COMPLICATE)
-            spawnOffset += SPAWN_OFFSET_INCREASER * (PlayerScore / SCORE_LIMIT_TO_COMPLICATE);
-        else
-            spawnOffset += SPAWN_OFFSET_INCREASER;
-
-        range[0] = posY - spawnOffset;
-        range[1] = posY + spawnOffset;
+        range[0] = pos - spawnOffset;
+        range[1] = pos + spawnOffset;
 
         return range;
     }

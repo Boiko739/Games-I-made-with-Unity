@@ -21,9 +21,9 @@ public class PipeMoveScript : MonoBehaviour
         if (transform.position.x < _logic.DeadZone)
             Destroy(gameObject);
     }
-    public void IncreaseSpeed(LogicScript ls)
+    public void IncreaseSpeed(ScoreHandlerScript sh)
     {
-        GetComponent<PipeMoveScript>().PipeMoveSpeed += ls.ScoreToAdd / 10f;
+        GetComponent<PipeMoveScript>().PipeMoveSpeed += sh.ScoreToAdd / 10f;
     }
     public void ResetSpeed()
     {

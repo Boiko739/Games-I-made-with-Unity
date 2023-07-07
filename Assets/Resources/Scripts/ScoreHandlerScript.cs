@@ -3,8 +3,13 @@ using UnityEngine;
 public class ScoreHandlerScript : MonoBehaviour
 {
     private static int HighScore;
+
+    private int _playerScore = 0;
+    private short _scoreToAdd = 1;
     private int _maxScoreToIncreaseSpeed = 50;
     private LogicScript _logic;
+    public int PlayerScore { get => _playerScore; set => _playerScore = value; }
+    public short ScoreToAdd { get => _scoreToAdd; }
 
     private void Start()
     {
@@ -15,10 +20,10 @@ public class ScoreHandlerScript : MonoBehaviour
     [ContextMenu("Increase Score")]
     internal void AddScore()
     {
-        _logic.PlayerScore += _logic.ScoreToAdd;
+        PlayerScore += ScoreToAdd;
         ShowScore();
-        if (_logic.PlayerScore <= _maxScoreToIncreaseSpeed)
-            _logic.pipes.GetComponent<PipeMoveScript>().IncreaseSpeed(_logic);
+        if (PlayerScore <= _maxScoreToIncreaseSpeed)
+            _logic.pipes.GetComponent<PipeMoveScript>().IncreaseSpeed(this);
     }
 
     /// <summary>
@@ -26,10 +31,10 @@ public class ScoreHandlerScript : MonoBehaviour
     /// </summary>
     internal void ShowScore()
     {
-        _logic.scoreText.text = _logic.PlayerScore.ToString();
-        if (_logic.PlayerScore > HighScore)
+        _logic.scoreText.text = PlayerScore.ToString();
+        if (PlayerScore > HighScore)
         {
-            HighScore = _logic.PlayerScore;
+            HighScore = PlayerScore;
             SaveHighScore();
         }
         _logic.highScoreText.text = $"Best score\n{HighScore}";
