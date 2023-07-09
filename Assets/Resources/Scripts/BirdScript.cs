@@ -61,6 +61,8 @@ public class BirdScript : MonoBehaviour
     }
     private async void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_birdIsAlive)
+            gameObject.GetComponent<AudioSource>().Play();
         await ChangeSkin(BirdSkins.DeadBird);
         _birdIsAlive = false;
         _logic.GameOver();
