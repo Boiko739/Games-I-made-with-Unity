@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PipeSpawnerScript : MonoBehaviour
 {
+    public GameObject pipe, pipeContainer;
+    private LogicScript _logic;
+    private FunctionTimer _timer;
+
     private float _pipeSpawnDelay = 2f;
     private float _pipeSpawnOffset = 4f;
-    private FunctionTimer _timer;
-    public GameObject pipe;
-    public GameObject pipeContainer;
-    private LogicScript _logic;
 
     // Start is called before the first frame update
     void Start()

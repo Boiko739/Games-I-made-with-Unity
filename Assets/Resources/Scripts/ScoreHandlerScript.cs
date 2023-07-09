@@ -23,7 +23,7 @@ public class ScoreHandlerScript : MonoBehaviour
         PlayerScore += ScoreToAdd;
         ShowScore();
         if (PlayerScore <= _maxScoreToIncreaseSpeed)
-            _logic.pipes.GetComponent<PipeMoveScript>().IncreaseSpeed(this);
+            _logic.pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
     }
 
     /// <summary>

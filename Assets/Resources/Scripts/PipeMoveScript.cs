@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PipeMoveScript : MonoBehaviour
@@ -5,7 +6,7 @@ public class PipeMoveScript : MonoBehaviour
     private LogicScript _logic;
 
     private const float PIPE_MOVE_SPEED = 10f;
-    private float _pipeMoveSpeed = 10f;
+    private static float _pipeMoveSpeed = 10f;
 
     public float PipeMoveSpeed { get => _pipeMoveSpeed; set => _pipeMoveSpeed = value; }
 
@@ -21,9 +22,10 @@ public class PipeMoveScript : MonoBehaviour
         if (transform.position.x < _logic.DeadZone)
             Destroy(gameObject);
     }
-    public void IncreaseSpeed(ScoreHandlerScript sh)
+    public void IncreaseSpeed()
     {
-        GetComponent<PipeMoveScript>().PipeMoveSpeed += sh.ScoreToAdd / 10f;
+        GetComponent<PipeMoveScript>().PipeMoveSpeed += .1f;
+        Debug.Log(GetComponent<PipeMoveScript>().PipeMoveSpeed);
     }
     public void ResetSpeed()
     {
