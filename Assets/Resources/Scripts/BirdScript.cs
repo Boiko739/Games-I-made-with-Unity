@@ -5,7 +5,7 @@ using UnityEngine;
 public class BirdScript : MonoBehaviour
 {
     private float _flapStrength = 12;
-    private int _timeToChangeSkin = 200;
+    private int _timeForSkinChanging = 200;
     private bool _birdIsAlive = true;
     private LogicScript _logic;
     private SpriteRenderer _spriteRenderer;
@@ -53,7 +53,7 @@ public class BirdScript : MonoBehaviour
 
         if (skin == BirdSkins.FlappyBird)
         {
-            await Task.Delay(_timeToChangeSkin);
+            await Task.Delay(_timeForSkinChanging);
 
             if (_birdIsAlive)
                 await ChangeSkin(BirdSkins.UsualBird);
@@ -61,6 +61,8 @@ public class BirdScript : MonoBehaviour
     }
     private async void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_birdIsAlive)
+            gameObject.GetComponent<AudioSource>().Play();
         await ChangeSkin(BirdSkins.DeadBird);
         _birdIsAlive = false;
         _logic.GameOver();
