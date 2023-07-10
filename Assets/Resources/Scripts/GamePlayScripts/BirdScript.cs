@@ -34,6 +34,8 @@ public class BirdScript : MonoBehaviour
             Flap(2);
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left) && _birdIsAlive)
             Flap();
+        if (gameObject.transform.position.y <= -100)
+            Destroy(gameObject);
     }
     private void OnBecameInvisible()
     {
