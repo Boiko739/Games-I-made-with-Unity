@@ -25,7 +25,6 @@ public class PipeMoveScript : MonoBehaviour
     public void IncreaseSpeed()
     {
         GetComponent<PipeMoveScript>().PipeMoveSpeed += .1f;
-        Debug.Log(GetComponent<PipeMoveScript>().PipeMoveSpeed);
     }
     public void ResetSpeed()
     {
