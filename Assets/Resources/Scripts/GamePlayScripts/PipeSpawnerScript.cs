@@ -12,8 +12,8 @@ public class PipeSpawnerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class PipeSpawnerScript : MonoBehaviour
         float lowestPoint;
         float highestPoint;
 
-        var range = _logic.DefineSpawnRange(transform.position.y, _pipeSpawnOffset, isPipe: true);
+        var range = _logic.DefineSpawnRange(transform.position.y, _pipeSpawnOffset, pipeIsCalling: true);
         lowestPoint = range[0];
         highestPoint = range[1];
 

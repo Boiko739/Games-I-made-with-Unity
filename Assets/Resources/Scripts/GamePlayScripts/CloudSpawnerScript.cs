@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class CloudSpawnerScript : MonoBehaviour
+public class CloudSpawnerScript : MonoBehaviour, ISpawner
 {
-    private float _cloudSpawnDelay = 1f;
-    private float _cloudSpawnOffset = 6f;
+    public GameObject clouds, cloudContainer;
+    private readonly float _cloudSpawnDelay = 1f, _cloudSpawnOffset = 6f;
     private FunctionTimer _timer;
     private LogicScript _logic;
-    public GameObject clouds;
-    public GameObject cloudContainer;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +16,7 @@ public class CloudSpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FunctionTimer.StartAndUpdateTimer(ref _timer, _cloudSpawnDelay, SpawnCloud);
+        FunctionTimer.StartAndUpdateTimer(ref _timer, _cloudSpawnDelay, SpawnItself);
     }
 
     private void SpawnCloudsOnStart(float posXToStop)
@@ -26,12 +24,12 @@ public class CloudSpawnerScript : MonoBehaviour
         transform.position = new Vector3(_logic.DeadZone, transform.position.y, transform.position.z);
         while (transform.position.x < posXToStop)
         {
-            SpawnCloud();
+            SpawnItself();
             transform.position = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z);
         }
 
     }
-    void SpawnCloud()
+    public void SpawnItself()
     {
         float lowestPoint;
         float highestPoint;

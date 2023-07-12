@@ -14,7 +14,8 @@ public class LogicScript : MonoBehaviour
 
     #region VariablesRegion
 
-    private const float SPAWN_OFFSET_INCREASER = 1.5f, SCORE_LIMIT_TO_COMPLICATE = 20f;
+    private const float SPAWN_OFFSET_INCREASER = 1.5f, SCORE_LIMIT_TO_SPEED_UP = 20f;
+    private int _maxScoreToIncreaseSpeed = 100;
 
     private short _deadZone = -30;
     private float _showHintDelayAfterStart = 2.5f;
@@ -52,7 +53,8 @@ public class LogicScript : MonoBehaviour
             }
             if (!HintIsShowing)
             {
-                FunctionTimer.StartAndUpdateTimer(ref _timer, _showHintDelayAfterStart, SetHintIsShowingToTrue);
+                FunctionTimer.StartAndUpdateTimer
+                    (ref _timer, _showHintDelayAfterStart, SetHintIsShowingToTrue);
                 if (HintIsShowing)
                     _timer = null;
             }
@@ -77,12 +79,20 @@ public class LogicScript : MonoBehaviour
     {
         textClickToPlay.enabled = !textClickToPlay.enabled;
     }
+    public void OnScoreIncreased()
+    {
+        var sh = scoreHandler.GetComponent<ScoreHandlerScript>();
+
+        sh.AddScore();
+        if (sh.PlayerScore <= _maxScoreToIncreaseSpeed)
+            pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
+    }
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         pipes.GetComponent<PipeMoveScript>().ResetSpeed();
     }
-    public void MainMenu()
+    public void OnMainMenuButtonClick()
     {
         SceneManager.LoadScene("MainMenuScene");
     }
@@ -98,14 +108,15 @@ public class LogicScript : MonoBehaviour
     /// <param name="pos"></param>
     /// <param name="spawnOffset"></param>
     /// <returns></returns>
-    public float[] DefineSpawnRange(float pos, float spawnOffset, bool isPipe = false)
+    public float[] DefineSpawnRange(float pos, float spawnOffset, bool pipeIsCalling = false)
     {
         float[] range = new float[2];
-        if (isPipe)
+        if (pipeIsCalling)
         {
-            if (scoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore < SCORE_LIMIT_TO_COMPLICATE)
-                spawnOffset += SPAWN_OFFSET_INCREASER * (scoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore / SCORE_LIMIT_TO_COMPLICATE);
-            else
+            var playerScore = scoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore;
+            //here I increase the spawn offset depend on the limit to speed up
+            spawnOffset = playerScore < SCORE_LIMIT_TO_SPEED_UP ?
+                spawnOffset += SPAWN_OFFSET_INCREASER * (playerScore / SCORE_LIMIT_TO_SPEED_UP) :
                 spawnOffset += SPAWN_OFFSET_INCREASER;
         }
 

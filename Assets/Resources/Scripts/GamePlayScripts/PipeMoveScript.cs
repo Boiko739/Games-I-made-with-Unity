@@ -8,7 +8,7 @@ public class PipeMoveScript : MonoBehaviour
     private const float PIPE_MOVE_SPEED = 10f;
     private static float _pipeMoveSpeed = 10f;
 
-    public float PipeMoveSpeed { get => _pipeMoveSpeed; set => _pipeMoveSpeed = value; }
+    public float PipeMoveSpeed { get => _pipeMoveSpeed; private set => _pipeMoveSpeed = value; }
 
     // Start is called before the first frame update
     private void Start()

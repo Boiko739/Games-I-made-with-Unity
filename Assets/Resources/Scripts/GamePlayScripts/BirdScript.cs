@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BirdScript : MonoBehaviour
 {
+    public Sprite[] sprites;
     private float _flapStrength = 12;
     private int _timeForSkinChanging = 200;
     private bool _birdIsAlive = true;
     private LogicScript _logic;
     private SpriteRenderer _spriteRenderer;
-    public Sprite[] sprites;
 
     private enum BirdSkins
     {
         UsualBird,
-        FlappyBird,
+        FlappingBird,
         DeadBird
     }
 
@@ -24,7 +24,7 @@ public class BirdScript : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = sprites[(short)BirdSkins.UsualBird];
 
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
-        _spriteRenderer = GameObject.FindWithTag("Bird").GetComponent<SpriteRenderer>();
+        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -37,29 +37,29 @@ public class BirdScript : MonoBehaviour
         if (gameObject.transform.position.y <= -100)
             Destroy(gameObject);
     }
-    private void OnBecameInvisible()
-    {
-        if (_logic != null)
-            OnCollisionEnter2D(new Collision2D());
-    }
     private async void Flap(short divider = 1)
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.up * _flapStrength / divider;
         await ChangeSkin();
     }
-    private async Task ChangeSkin(BirdSkins skin = BirdSkins.FlappyBird)
+    private async Task ChangeSkin(BirdSkins skin = BirdSkins.FlappingBird)
     {
         if (_spriteRenderer == null)
             return;
         _spriteRenderer.sprite = sprites[((short)skin)];
 
-        if (skin == BirdSkins.FlappyBird)
+        if (skin == BirdSkins.FlappingBird)
         {
             await Task.Delay(_timeForSkinChanging);
 
             if (_birdIsAlive)
                 await ChangeSkin(BirdSkins.UsualBird);
         }
+    }
+    private void OnBecameInvisible()
+    {
+        if (_logic != null)
+            OnCollisionEnter2D(new Collision2D());
     }
     private async void OnCollisionEnter2D(Collision2D collision)
     {

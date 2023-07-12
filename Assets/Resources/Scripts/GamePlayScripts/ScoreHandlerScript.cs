@@ -6,7 +6,6 @@ public class ScoreHandlerScript : MonoBehaviour
 
     private int _playerScore = 0;
     private short _scoreToAdd = 1;
-    private int _maxScoreToIncreaseSpeed = 100;
     private LogicScript _logic;
     public int PlayerScore { get => _playerScore; set => _playerScore = value; }
     public short ScoreToAdd { get => _scoreToAdd; }
@@ -22,8 +21,6 @@ public class ScoreHandlerScript : MonoBehaviour
     {
         PlayerScore += ScoreToAdd;
         ShowScore();
-        if (PlayerScore <= _maxScoreToIncreaseSpeed)
-            _logic.pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
     }
 
     /// <summary>
