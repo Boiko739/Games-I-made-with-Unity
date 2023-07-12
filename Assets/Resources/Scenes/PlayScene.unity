@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 81001642}
   - component: {fileID: 81001641}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1523,7 +1523,7 @@ GameObject:
   - component: {fileID: 1571974662}
   - component: {fileID: 1571974661}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: TryAgainButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
