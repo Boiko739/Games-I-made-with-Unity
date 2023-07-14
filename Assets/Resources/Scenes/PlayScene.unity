@@ -696,7 +696,7 @@ SpriteRenderer:
   m_Size: {x: 1.9033333, y: 1.63}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &548140770
@@ -712,9 +712,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 569206220, guid: 59337a7648349114eb7d03fb977910df, type: 3}
-  - {fileID: -1172173799, guid: 59337a7648349114eb7d03fb977910df, type: 3}
-  - {fileID: -929915937, guid: 59337a7648349114eb7d03fb977910df, type: 3}
+  - {fileID: 21300000, guid: 3834231899efab24ead029477f9d887c, type: 3}
+  - {fileID: 21300000, guid: 2a6aa4aea16728d44b32e5fc971c67c0, type: 3}
+  - {fileID: 21300000, guid: 9edc603e0d24bdd4fbc1bae6e033c997, type: 3}
 --- !u!58 &548140771
 CircleCollider2D:
   m_ObjectHideFlags: 0

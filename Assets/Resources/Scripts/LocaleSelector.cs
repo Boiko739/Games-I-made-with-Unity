@@ -1,25 +1,36 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.ResourceManagement.ResourceProviders.Simulation;
 
 public class LocaleSelector : MonoBehaviour
 {
-    private bool _active = false;
+    private bool _inProcess = false;
     private void Start()
     {
         ChangeLocale(PlayerPrefs.GetInt("LocaleKey", 0));
     }
-    public void ChangeLocale(int localeID)
+    private void ChangeLocale(int localeID)
     {
-        if (_active) return;
+        if (_inProcess) return;
         StartCoroutine(SetLocate(localeID));
     }
+    public void SetNextLocale()
+    {
+        int localeID = PlayerPrefs.GetInt("LocaleKey", 0);
+        int totalLocales = LocalizationSettings.AvailableLocales.Locales.Count;
+
+        localeID = localeID == totalLocales - 1 ? 0 : localeID + 1;
+
+        ChangeLocale(localeID);
+    }
+
     IEnumerator SetLocate(int localeID)
     {
-        _active = true;
+        _inProcess = true;
         yield return LocalizationSettings.InitializationOperation;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeID];
         PlayerPrefs.SetInt("LocaleKey", localeID);
-        _active = false;
+        _inProcess = false;
     }
 }
