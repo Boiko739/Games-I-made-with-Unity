@@ -12,7 +12,7 @@ public class FunctionTimer
     {
         _action = action;
         _timer = timer;
-        _inputTimer = timer;;
+        _inputTimer = timer;
     }
 
     public void Update()
@@ -20,7 +20,7 @@ public class FunctionTimer
         _timer -= Time.deltaTime;
         if (_timer <= 0)
         {
-            if (_action != null) 
+            if (_action != null)
                 _action.Invoke();
             if (!_once)
                 _timer = _inputTimer;
