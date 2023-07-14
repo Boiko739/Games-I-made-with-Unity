@@ -35,7 +35,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 32297559519232
-    m_Localized: Score Board
+    m_Localized: Leaderboard
     m_Metadata:
       m_Items: []
   - m_Id: 32362478956544
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 172086589911040
-    m_Localized: Set by default
+    m_Localized: Default
     m_Metadata:
       m_Items: []
   references:
