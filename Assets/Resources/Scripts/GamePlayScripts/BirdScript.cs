@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BirdScript : MonoBehaviour
+public class BirdScript : View
 {
     public Sprite[] sprites;
     private float _flapStrength = 12;
@@ -68,5 +69,11 @@ public class BirdScript : MonoBehaviour
         await ChangeSkin(BirdSkins.DeadBird);
         _birdIsAlive = false;
         _logic.GameOver();
+    }
+
+    public override void SetSkin(string path)
+    {
+        for (int i = 0; i < sprites.Length; i++)
+            sprites[i] = (Sprite)Resources.Load($"Assets/BirdSkins/{path}/{sprites[i]}");
     }
 }
