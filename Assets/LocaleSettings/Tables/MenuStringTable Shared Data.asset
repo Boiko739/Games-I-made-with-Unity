@@ -67,6 +67,10 @@ MonoBehaviour:
     m_Key: Default
     m_Metadata:
       m_Items: []
+  - m_Id: 1699454953451520
+    m_Key: Reset
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
