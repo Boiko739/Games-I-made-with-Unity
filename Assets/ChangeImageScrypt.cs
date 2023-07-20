@@ -1,11 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeImageScrypt : MonoBehaviour
 {
-    public GameObject customizationManager;
-
-    private void NextImage()
+    public void NextImage()
     {
-        //      gameObject.GetComponent<Image>().sprite = (Sprite)Resources.Load($"Sprites//Hats//{customizationManager.GetNextImagePath()}");
+       // gameObject.GetComponent<Image>().sprite = (Sprite)Resources.Load($"Sprites//Hats//{gameObject.CustomizationManager.GetNextImagePath()}");
     }
 }
