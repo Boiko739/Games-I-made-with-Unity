@@ -6087,14 +6087,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1752577486}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 6
+      - m_Target: {fileID: 1752577490}
+        m_TargetAssemblyTypeName: ChangeImageScrypt, Assembly-CSharp
+        m_MethodName: ChangeImage
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -6261,6 +6261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2b048049c82fe4aa464bf6b12f63b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentImage: 0
 --- !u!1 &1880385106
 GameObject:
   m_ObjectHideFlags: 0
