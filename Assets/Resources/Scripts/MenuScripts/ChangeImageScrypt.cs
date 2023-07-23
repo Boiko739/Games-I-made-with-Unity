@@ -4,15 +4,19 @@ using UnityEngine.UI;
 public class ChangeImageScrypt : MonoBehaviour
 {
     public int currentImage = 0;
+
     public void ChangeImage(int next)
     {
+        var arr = Resources.LoadAll($"Sprites/Hats");
+        var inst = arr[1];
+        var t = inst.GetType();
+        var a = Resources.LoadAll($"Sprites/Hats", t);
         int nextImage = currentImage + next;
-        int lastImageIndex = 0;
-        var a = Resources.LoadAll($"Sprites/Hats")[1].GetType();//this is the place to work on the next time
+        int lastImageIndex = a.Length - 1;
 
         if (nextImage < 0)
         {
-            gameObject.GetComponent<Image>().sprite = (Sprite)Resources.Load($"Sprites/Hats/{lastImageIndex}");
+            gameObject.GetComponent<Image>().sprite = a[lastImageIndex] as Sprite;
 
             currentImage = lastImageIndex;
 
