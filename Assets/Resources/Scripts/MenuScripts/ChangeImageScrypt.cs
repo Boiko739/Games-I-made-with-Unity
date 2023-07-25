@@ -7,16 +7,15 @@ public class ChangeImageScrypt : MonoBehaviour
 
     public void ChangeImage(int next)
     {
-        var arr = Resources.LoadAll($"Sprites/Hats");
-        var inst = arr[1];
-        var t = inst.GetType();
-        var a = Resources.LoadAll($"Sprites/Hats", t);
+        var inst = Resources.LoadAll($"Sprites/Hats")[1];
+        var sprites = Resources.LoadAll($"Sprites/Hats", inst.GetType());
+
         int nextImage = currentImage + next;
-        int lastImageIndex = a.Length - 1;
+        int lastImageIndex = sprites.Length - 1;
 
         if (nextImage < 0)
         {
-            gameObject.GetComponent<Image>().sprite = a[lastImageIndex] as Sprite;
+            gameObject.GetComponent<Image>().sprite = sprites[lastImageIndex] as Sprite;
 
             currentImage = lastImageIndex;
 
@@ -24,13 +23,13 @@ public class ChangeImageScrypt : MonoBehaviour
         }
         else if (nextImage > lastImageIndex)
         {
-            gameObject.GetComponent<Image>().sprite = (Sprite)Resources.Load($"Sprites//Hats//0");
+            gameObject.GetComponent<Image>().sprite = sprites[0] as Sprite;
 
             currentImage = 0;
 
             return;
         }
-        gameObject.GetComponent<Image>().sprite = (Sprite)Resources.Load($"Sprites//Hats//{nextImage}");
+        gameObject.GetComponent<Image>().sprite = sprites[nextImage] as Sprite;
         
         currentImage = nextImage;
     }
