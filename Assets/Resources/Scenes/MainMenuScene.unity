@@ -686,8 +686,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1752577490}
-        m_TargetAssemblyTypeName: ChangeImageScrypt, Assembly-CSharp
-        m_MethodName: ChangeImage
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangeHatSprite
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4620,7 +4620,7 @@ GameObject:
   - component: {fileID: 1317750331}
   - component: {fileID: 1317750330}
   m_Layer: 5
-  m_Name: Bird'sSkinPreviousButton
+  m_Name: BirdPreviousButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4690,14 +4690,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449022387}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1590657891}
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangeBirdSprite
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -4753,7 +4753,7 @@ GameObject:
   - component: {fileID: 1352805350}
   - component: {fileID: 1352805349}
   m_Layer: 5
-  m_Name: Bird'sSkinNextButton
+  m_Name: BirdNextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4823,14 +4823,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449022387}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1590657891}
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangeBirdSprite
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -5939,6 +5939,7 @@ GameObject:
   - component: {fileID: 1590657888}
   - component: {fileID: 1590657890}
   - component: {fileID: 1590657889}
+  - component: {fileID: 1590657891}
   m_Layer: 0
   m_Name: ImageBird
   m_TagString: Untagged
@@ -6004,6 +6005,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590657887}
   m_CullTransparentMesh: 1
+--- !u!114 &1590657891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590657887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2b048049c82fe4aa464bf6b12f63b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHatSprite: 0
+  currentBirdSprite: 0
 --- !u!1 &1692187365
 GameObject:
   m_ObjectHideFlags: 0
@@ -6088,8 +6103,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1752577490}
-        m_TargetAssemblyTypeName: ChangeImageScrypt, Assembly-CSharp
-        m_MethodName: ChangeImage
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangeHatSprite
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6261,7 +6276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2b048049c82fe4aa464bf6b12f63b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentImage: 0
+  currentHatSprite: 0
+  currentBirdSprite: 0
 --- !u!1 &1880385106
 GameObject:
   m_ObjectHideFlags: 0
