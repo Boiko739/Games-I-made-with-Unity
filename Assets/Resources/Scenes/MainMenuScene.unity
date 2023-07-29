@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 31614302}
   - component: {fileID: 31614301}
   m_Layer: 5
-  m_Name: BirdsSkinPreviousButton
+  m_Name: BackgroundPreviousButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,14 +206,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449022387}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1817039492}
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangeBackgroundSprite
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2177,7 +2177,7 @@ GameObject:
   - component: {fileID: 549141654}
   - component: {fileID: 549141653}
   m_Layer: 5
-  m_Name: TextScene
+  m_Name: BackgroundText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2291,7 +2291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Scene
+  m_text: Background
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -2318,7 +2318,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 65.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2913,7 +2913,7 @@ GameObject:
   - component: {fileID: 913641032}
   - component: {fileID: 913641031}
   m_Layer: 5
-  m_Name: BirdsSkinPreviousButton
+  m_Name: PipePreviousButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2983,14 +2983,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449022387}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1817039492}
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangePipeSprite
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -3043,7 +3043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 997964665}
   m_Layer: 0
-  m_Name: SceneChange
+  m_Name: BackgroundChange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3552,7 +3552,7 @@ GameObject:
   - component: {fileID: 1127297865}
   - component: {fileID: 1127297864}
   m_Layer: 5
-  m_Name: TextHat
+  m_Name: HatText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4292,7 +4292,7 @@ GameObject:
   - component: {fileID: 1264132386}
   - component: {fileID: 1264132385}
   m_Layer: 5
-  m_Name: TextBird
+  m_Name: BirdText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4467,7 +4467,7 @@ GameObject:
   - component: {fileID: 1277557145}
   - component: {fileID: 1277557144}
   m_Layer: 0
-  m_Name: ImageScene
+  m_Name: BackgroundSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4543,7 +4543,7 @@ GameObject:
   - component: {fileID: 1296475358}
   - component: {fileID: 1296475357}
   m_Layer: 0
-  m_Name: ImagePipe
+  m_Name: PipeSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5316,7 +5316,7 @@ GameObject:
   - component: {fileID: 1388439123}
   - component: {fileID: 1388439122}
   m_Layer: 5
-  m_Name: BirdsSkinNextButton
+  m_Name: BackgroundNextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5386,14 +5386,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449022387}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1817039492}
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangeBackgroundSprite
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -5866,22 +5866,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 787854836}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 449022387}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1817039492}
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: SetByDefault
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6277,12 +6265,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2b048049c82fe4aa464bf6b12f63b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHatSprite: 0
   currentBirdSprite: 0
+  currentHatSprite: 0
+  currentBackgroundSprite: 0
+  currentPipeSprite: 0
   bird: {fileID: 1590657887}
   hat: {fileID: 1752577486}
-  _hatSprites: []
+  background: {fileID: 1277557142}
+  pipe: {fileID: 1296475355}
   _birdSprites: []
+  _hatSprites: []
+  _backgroundSprites: []
+  _pipeSprites: []
 --- !u!4 &1817039493
 Transform:
   m_ObjectHideFlags: 0
@@ -6291,7 +6285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817039491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 360, y: 263.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6445,7 +6439,7 @@ GameObject:
   - component: {fileID: 1896527778}
   - component: {fileID: 1896527777}
   m_Layer: 5
-  m_Name: BirdsSkinNextButton
+  m_Name: PipeNextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6515,14 +6509,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 449022387}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1817039492}
+        m_TargetAssemblyTypeName: ChangeSpriteScript, Assembly-CSharp
+        m_MethodName: ChangePipeSprite
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -6754,7 +6748,7 @@ GameObject:
   - component: {fileID: 1974635111}
   - component: {fileID: 1974635110}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PipeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
