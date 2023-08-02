@@ -71,6 +71,18 @@ MonoBehaviour:
     m_Key: Reset
     m_Metadata:
       m_Items: []
+  - m_Id: 7055751129243648
+    m_Key: Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7056039831576576
+    m_Key: Date
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8448686739595264
+    m_Key: Volume
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
