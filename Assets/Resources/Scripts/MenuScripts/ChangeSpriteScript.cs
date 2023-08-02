@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.UI;
 
 public class ChangeSpriteScript : MonoBehaviour
 {
-    public int currentBirdSprite = 0, currentHatSprite = 0, 
+    public int currentBirdSprite = 0, currentHatSprite = 0,
         currentBackgroundSprite = 0, currentPipeSprite = 0;
     public GameObject bird, hat, background, pipe;
     [SerializeField]

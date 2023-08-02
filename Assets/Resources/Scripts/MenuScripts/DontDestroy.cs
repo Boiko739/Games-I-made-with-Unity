@@ -9,7 +9,7 @@ public class DontDestroy : MonoBehaviour
 
         if (objs.Length > 1)
             Destroy(gameObject);
-
+        objs[0].GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("volume");
         DontDestroyOnLoad(gameObject);
     }
     private void Update()
