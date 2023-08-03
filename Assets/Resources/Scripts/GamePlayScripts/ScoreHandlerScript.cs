@@ -3,11 +3,9 @@ using UnityEngine;
 public class ScoreHandlerScript : MonoBehaviour
 {
     private static int HighScore;
-
-    private int _playerScore = 0;
-    private short _scoreToAdd = 1;
+    private readonly short _scoreToAdd = 1;
     private LogicScript _logic;
-    public int PlayerScore { get => _playerScore; set => _playerScore = value; }
+    public int PlayerScore { get; set; } = 0;
     public short ScoreToAdd { get => _scoreToAdd; }
 
     private void Start()
@@ -34,7 +32,7 @@ public class ScoreHandlerScript : MonoBehaviour
             HighScore = PlayerScore;
             SaveHighScore();
         }
-        _logic.highScoreText.text = $"Best score\n{HighScore}";
+        _logic.highScoreText.text = $"{HighScore}";
     }
 
     internal void LoadHighScore()

@@ -8,45 +8,47 @@ public class LogicScript : MonoBehaviour
     #region ReferencesRegion
 
     public Text scoreText, textClickToPlay, highScoreText;
-    public GameObject pipeSpawner, gameOverScreen, pipes, scoreHandler;
+    public GameObject pipeSpawner, gameOverScreen, pipes, scoreHandler, locale;
 
     #endregion ReferencesRegion
 
     #region VariablesRegion
 
     private const float SPAWN_OFFSET_INCREASER = 1.5f, SCORE_LIMIT_TO_SPEED_UP = 20f;
-    private int _maxScoreToIncreaseSpeed = 100;
+    private readonly int _maxScoreToIncreaseSpeed = 100;
 
-    private short _deadZone = -30;
-    private float _showHintDelayAfterStart = 2.5f;
-    private float _flashHintDelay = 1.5f;
+    private readonly short _deadZone = -30;
+    private readonly float _showHintDelayAfterStart = 2.5f;
+    private readonly float _flashHintDelay = 1.5f;
     private bool _hintIsShowing = false;
-    private bool _gameIsOn = false;
+    private bool _playerIsPlaying = false;
+    private bool _gameIsPaused = false;
     private FunctionTimer _timer;
 
     #endregion VariablesRegion
 
-    #region PropsRegion
-
-    public delegate void SpawnDelegate();
-    public bool GameIsOn { get => _gameIsOn; private set => _gameIsOn = value; }
+    #region PropertiesRegion
+    public bool PlayerIsPlaying { get => _playerIsPlaying; private set => _playerIsPlaying = value; }
     public float DeadZone { get => _deadZone; }
     public bool HintIsShowing { get => _hintIsShowing; set => _hintIsShowing = value; }
 
-    #endregion PropsRegion
+    #endregion PropertiesRegion
 
-    private void Start()
-    {
+    public delegate void SpawnDelegate();
 
-    }
     private void Update()
     {
-        if (!_gameIsOn)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            _gameIsPaused = true;
+        }
+        if (!_playerIsPlaying)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left))
             {
                 pipeSpawner.SetActive(true);
-                GameIsOn = true;
+                PlayerIsPlaying = true;
                 HintIsShowing = false;
                 pipeSpawner.GetComponent<PipeSpawnerScript>().SpawnPipes();
                 return;
@@ -59,10 +61,9 @@ public class LogicScript : MonoBehaviour
                     _timer = null;
             }
         }
-        if (HintIsShowing)
-            FlashHint();
-        else textClickToPlay.enabled = false;
 
+        if (HintIsShowing) FlashHint();
+        else textClickToPlay.enabled = false;
     }
     private void SetHintIsShowingToTrue()
     {
@@ -70,7 +71,7 @@ public class LogicScript : MonoBehaviour
     }
     private void FlashHint()
     {
-        if (!GameIsOn && textClickToPlay != null)
+        if (!PlayerIsPlaying && textClickToPlay != null)
             FunctionTimer.StartAndUpdateTimer(ref _timer, _flashHintDelay, SwitchTextCondition);
         else
             HintIsShowing = false;
@@ -103,7 +104,7 @@ public class LogicScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the lowest, closest and the highest, farthest points for spawning depends on player csore
+    /// Returns the lowest, closest and the highest, farthest points for spawning depends on the player csore
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="spawnOffset"></param>

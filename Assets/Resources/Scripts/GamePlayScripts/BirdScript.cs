@@ -18,6 +18,10 @@ public class BirdScript : View
         DeadBird
     }
 
+    private void Awake()
+    {
+        gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("volume");
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +34,7 @@ public class BirdScript : View
     // Update is called once per frame
     private void Update()
     {
-        if (!_logic.GameIsOn && transform.position.y <= 0)
+        if (!_logic.PlayerIsPlaying && transform.position.y <= 0)
             Flap(2);
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left) && _birdIsAlive)
             Flap();

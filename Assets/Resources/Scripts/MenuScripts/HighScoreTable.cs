@@ -22,9 +22,9 @@ public class HighscoreTable : MonoBehaviour
             return;
 
         SortEntries();
-       
+
         ShowEntries(_highscoreEntryList);
-        
+
         if (_highscoreEntryList.Count >= 6)
             SaveHighscores(_highscoreEntryList.GetRange(0, 6));
         else SaveHighscores(_highscoreEntryList);

@@ -1,9 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour
 {
-    public UnityEngine.UI.Image image;
+    public Image Image;
+    public GameObject VolumeSetter;
+
+    private void Start()
+    {
+        //Setting Up The Volume
+        if (!PlayerPrefs.HasKey("volume"))
+            PlayerPrefs.SetFloat("volume", 0.7f);
+        VolumeSetter.GetComponent<AudioSoucreScript>().SetUpVolume();
+
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene("PlayScene");
@@ -14,6 +25,6 @@ public class MainMenuScript : MonoBehaviour
     }
     public void SetMenuBeckgroundTo(string background)//in the case if we need it from the settings menu
     {
-        image.sprite = Resources.Load<Sprite>(background);
+        Image.sprite = Resources.Load<Sprite>(background);
     }
 }

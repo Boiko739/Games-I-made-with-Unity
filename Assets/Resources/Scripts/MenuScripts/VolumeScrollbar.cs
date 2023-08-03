@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class VolumeScrollbar : MonoBehaviour
 {
-    private void OnMouseUp()
+    private void Awake()
     {
-        var value = gameObject.transform.parent.transform.parent.GetComponent<Scrollbar>().value;
+        gameObject.GetComponent<Scrollbar>().value = PlayerPrefs.GetFloat("volume");
+    }
+    public void SaveVolumeValue()
+    {
+        float value = gameObject.GetComponent<Scrollbar>().value;
         PlayerPrefs.SetFloat("volume", value);
     }
 }
