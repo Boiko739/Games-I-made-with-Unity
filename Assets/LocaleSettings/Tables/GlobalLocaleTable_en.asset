@@ -10,80 +10,96 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: MenuStringTable_uk
+  m_Name: GlobalLocaleTable_en
   m_EditorClassIdentifier: 
   m_LocaleId:
-    m_Code: uk
+    m_Code: en
   m_SharedData: {fileID: 11400000, guid: 96a068f33ba930448b203a60ae0fc698, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
   - m_Id: 12315521024
-    m_Localized: "\u0413\u0440\u0430\u0442\u0438"
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 32185391247360
-    m_Localized: "\u041D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F"
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   - m_Id: 32222959628288
-    m_Localized: "\u0412\u0438\u0439\u0442\u0438"
+    m_Localized: Quit
     m_Metadata:
       m_Items: []
   - m_Id: 32259236163584
-    m_Localized: "\u041A\u0430\u0441\u0442\u043E\u043C\u0456\u0437\u0430\u0446\u0456\u044F"
+    m_Localized: Customization
     m_Metadata:
       m_Items: []
   - m_Id: 32297559519232
-    m_Localized: "\u0422\u0430\u0431\u043B\u0438\u0446\u044F \u0440\u0435\u043A\u043E\u0440\u0434\u0456\u0432"
+    m_Localized: Leaderboard
     m_Metadata:
       m_Items: []
   - m_Id: 32362478956544
-    m_Localized: "\u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430"
+    m_Localized: English
     m_Metadata:
       m_Items: []
   - m_Id: 32436546170880
-    m_Localized: "\u041D\u0430\u0437\u0430\u0434"
+    m_Localized: Back
     m_Metadata:
       m_Items: []
   - m_Id: 153861923794944
-    m_Localized: "\u041B\u0435\u0442\u044E\u0447\u0430 \u041F\u0442\u0430\u0448\u043A\u0430"
+    m_Localized: Flappy Bird
     m_Metadata:
       m_Items: []
   - m_Id: 159218192609280
-    m_Localized: "\u041F\u0442\u0430\u0448\u043A\u0430"
+    m_Localized: Bird
     m_Metadata:
       m_Items: []
   - m_Id: 159463110602752
-    m_Localized: "\u041A\u0430\u043F\u0435\u043B\u044E\u0445"
+    m_Localized: Hat
     m_Metadata:
       m_Items: []
   - m_Id: 159674545467392
-    m_Localized: "\u0424\u043E\u043D"
+    m_Localized: Background
     m_Metadata:
       m_Items: []
   - m_Id: 160006700789760
-    m_Localized: "\u0422\u0440\u0443\u0431\u0438"
+    m_Localized: Pipes
     m_Metadata:
       m_Items: []
   - m_Id: 172086589911040
-    m_Localized: "\u0417\u0430 \u0437\u0430\u043C\u043E\u0432\u0447\u0443\u0432\u0430\u043D\u043D\u044F\u043C"
+    m_Localized: Default
     m_Metadata:
       m_Items: []
   - m_Id: 1699454953451520
-    m_Localized: "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u0438"
+    m_Localized: Reset
     m_Metadata:
       m_Items: []
   - m_Id: 7055751129243648
-    m_Localized: "\u0420\u0430\u0445\u0443\u043D\u043E\u043A"
+    m_Localized: Score
     m_Metadata:
       m_Items: []
   - m_Id: 7056039831576576
-    m_Localized: "\u0414\u0430\u0442\u0430"
+    m_Localized: Date
     m_Metadata:
       m_Items: []
   - m_Id: 8448686739595264
-    m_Localized: "\u0413\u0443\u0447\u043D\u0456\u0441\u0442\u044C"
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8698225035747328
+    m_Localized: Best Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8701214475591680
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8701883366416384
+    m_Localized: Try again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8703050242760704
+    m_Localized: Main Menu
     m_Metadata:
       m_Items: []
   references:

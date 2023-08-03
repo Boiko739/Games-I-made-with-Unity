@@ -9,83 +9,104 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: MenuStringTable_en
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: GlobalLocaleTable Shared Data
   m_EditorClassIdentifier: 
-  m_LocaleId:
-    m_Code: en
-  m_SharedData: {fileID: 11400000, guid: 96a068f33ba930448b203a60ae0fc698, type: 2}
-  m_Metadata:
-    m_Items: []
-  m_TableData:
+  m_TableCollectionName: GlobalLocaleTable
+  m_TableCollectionNameGuidString: 96a068f33ba930448b203a60ae0fc698
+  m_Entries:
   - m_Id: 12315521024
-    m_Localized: Play
+    m_Key: Play
     m_Metadata:
       m_Items: []
   - m_Id: 32185391247360
-    m_Localized: Settings
+    m_Key: Settings
     m_Metadata:
       m_Items: []
   - m_Id: 32222959628288
-    m_Localized: Quit
+    m_Key: Quit
     m_Metadata:
       m_Items: []
   - m_Id: 32259236163584
-    m_Localized: Customization
+    m_Key: Customization
     m_Metadata:
       m_Items: []
   - m_Id: 32297559519232
-    m_Localized: Leaderboard
+    m_Key: Leaderboard
     m_Metadata:
       m_Items: []
   - m_Id: 32362478956544
-    m_Localized: English
+    m_Key: Language
     m_Metadata:
       m_Items: []
   - m_Id: 32436546170880
-    m_Localized: Back
+    m_Key: Back
     m_Metadata:
       m_Items: []
   - m_Id: 153861923794944
-    m_Localized: Flappy Bird
+    m_Key: Title
     m_Metadata:
       m_Items: []
   - m_Id: 159218192609280
-    m_Localized: Bird
+    m_Key: Bird
     m_Metadata:
       m_Items: []
   - m_Id: 159463110602752
-    m_Localized: Hat
+    m_Key: Hat
     m_Metadata:
       m_Items: []
   - m_Id: 159674545467392
-    m_Localized: Background
+    m_Key: Background
     m_Metadata:
       m_Items: []
   - m_Id: 160006700789760
-    m_Localized: Pipes
+    m_Key: Pipes
     m_Metadata:
       m_Items: []
   - m_Id: 172086589911040
-    m_Localized: Default
+    m_Key: Default
     m_Metadata:
       m_Items: []
   - m_Id: 1699454953451520
-    m_Localized: Reset
+    m_Key: Reset
     m_Metadata:
       m_Items: []
   - m_Id: 7055751129243648
-    m_Localized: Score
+    m_Key: Score
     m_Metadata:
       m_Items: []
   - m_Id: 7056039831576576
-    m_Localized: Date
+    m_Key: Date
     m_Metadata:
       m_Items: []
   - m_Id: 8448686739595264
-    m_Localized: Volume
+    m_Key: Volume
     m_Metadata:
       m_Items: []
+  - m_Id: 8698225035747328
+    m_Key: BestScore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8701214475591680
+    m_Key: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8701883366416384
+    m_Key: Try again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8703050242760704
+    m_Key: Main Menu
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8454427716260986954
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8454427716260986954
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1688983551987
