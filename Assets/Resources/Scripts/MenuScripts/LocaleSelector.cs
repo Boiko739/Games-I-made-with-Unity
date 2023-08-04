@@ -11,8 +11,8 @@ public class LocaleSelector : MonoBehaviour
     }
     private void ChangeLocale(int localeID)
     {
-        if (_inProcess) return;
-        StartCoroutine(SetLocate(localeID));
+        if (!_inProcess)
+            StartCoroutine(SetLocate(localeID));
     }
     public void SetNextLocale()
     {

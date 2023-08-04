@@ -3171,7 +3171,7 @@ GameObject:
   - component: {fileID: 697750341}
   - component: {fileID: 697750340}
   m_Layer: 5
-  m_Name: MainMenuBackground
+  m_Name: MenuBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3494,7 +3494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3ae3ab46f45e4478d8062d12a6c753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Image: {fileID: 0}
+  Image: {fileID: 697750340}
   VolumeSetter: {fileID: 747480740}
 --- !u!1 &787854836
 GameObject:
@@ -7747,14 +7747,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2b048049c82fe4aa464bf6b12f63b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBirdSprite: 0
-  currentHatSprite: 0
-  currentBackgroundSprite: 0
-  currentPipeSprite: 0
-  bird: {fileID: 1590657887}
-  hat: {fileID: 1752577486}
-  background: {fileID: 1277557142}
-  pipe: {fileID: 1296475355}
+  <CurrentBirdSprite>k__BackingField: 0
+  <CurrentHatSprite>k__BackingField: 0
+  <CurrentBackgroundSprite>k__BackingField: 0
+  <CurrentPipeSprite>k__BackingField: 0
+  Bird: {fileID: 1590657887}
+  Hat: {fileID: 1752577486}
+  Background: {fileID: 1277557142}
+  Pipe: {fileID: 1296475355}
   _birdSprites: []
   _hatSprites: []
   _backgroundSprites: []

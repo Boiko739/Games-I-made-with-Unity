@@ -20,17 +20,16 @@ public class LogicScript : MonoBehaviour
     private readonly short _deadZone = -30;
     private readonly float _showHintDelayAfterStart = 2.5f;
     private readonly float _flashHintDelay = 1.5f;
-    private bool _hintIsShowing = false;
-    private bool _playerIsPlaying = false;
-    private bool _gameIsPaused = false;
     private FunctionTimer _timer;
 
     #endregion VariablesRegion
 
     #region PropertiesRegion
-    public bool PlayerIsPlaying { get => _playerIsPlaying; private set => _playerIsPlaying = value; }
+
+    private bool GameIsPaused { get; set; } = false;
+    public bool PlayerIsPlaying { get; private set; } = false;
     public float DeadZone { get => _deadZone; }
-    public bool HintIsShowing { get => _hintIsShowing; set => _hintIsShowing = value; }
+    private bool HintIsShowing { get; set; } = false;
 
     #endregion PropertiesRegion
 
@@ -40,10 +39,21 @@ public class LogicScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0;
-            _gameIsPaused = true;
+            if (GameIsPaused)
+            {
+                Time.timeScale = 1;
+                GameIsPaused = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                GameIsPaused = true;
+            }
         }
-        if (!_playerIsPlaying)
+    }
+    private void FixedUpdate()
+    {
+        if (!PlayerIsPlaying)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left))
             {

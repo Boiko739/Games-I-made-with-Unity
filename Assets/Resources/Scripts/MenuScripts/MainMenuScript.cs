@@ -7,13 +7,9 @@ public class MainMenuScript : MonoBehaviour
     public Image Image;
     public GameObject VolumeSetter;
 
-    private void Start()
+    private void Awake()
     {
-        //Setting Up The Volume
-        if (!PlayerPrefs.HasKey("volume"))
-            PlayerPrefs.SetFloat("volume", 0.7f);
         VolumeSetter.GetComponent<AudioSoucreScript>().SetUpVolume();
-
     }
     public void PlayGame()
     {

@@ -5,65 +5,48 @@ using UnityEngine.UI;
 
 public class ChangeSpriteScript : MonoBehaviour
 {
-    public int currentBirdSprite = 0, currentHatSprite = 0,
-        currentBackgroundSprite = 0, currentPipeSprite = 0;
-    public GameObject bird, hat, background, pipe;
+    [field:SerializeField]
+    public int CurrentBirdSprite { get; private set; } = 0;
+    [field:SerializeField]
+    public int CurrentHatSprite { get; private set; } = 0;
+    [field:SerializeField]
+    public int CurrentBackgroundSprite { get; private set; } = 0;
+    [field:SerializeField]
+    public int CurrentPipeSprite { get; private set; } = 0;
+
+    public GameObject Bird, Hat, Background, Pipe;
     [SerializeField]
     private List<Sprite> _birdSprites, _hatSprites, _backgroundSprites, _pipeSprites;
 
     private void Start()
     {
-        LoadHatSprites();
-        LoadBirdSprites();
-        LoadBackgroundSprites();
-        LoadPipeSprites();
+        _birdSprites = Resources.LoadAll<Sprite>($"Sprites/Birds").ToList();
+        _hatSprites = Resources.LoadAll<Sprite>("Sprites/Hats").ToList();
+        _backgroundSprites = Resources.LoadAll<Sprite>("Sprites/Backgrounds").ToList();
+        _pipeSprites = Resources.LoadAll<Sprite>("Sprites/Pipes").ToList();
     }
     public void SetByDefault()
     {
-        currentBirdSprite = ChangeSprite(bird, 0, 0, _birdSprites);
-        currentHatSprite = ChangeSprite(hat, 0, 0, _hatSprites);
-        currentBackgroundSprite = ChangeSprite(background, 0, 0, _backgroundSprites);
-        currentPipeSprite = ChangeSprite(pipe, 0, 0, _pipeSprites);
+        CurrentBirdSprite = ChangeSprite(Bird, 0, 0, _birdSprites);
+        CurrentHatSprite = ChangeSprite(Hat, 0, 0, _hatSprites);
+        CurrentBackgroundSprite = ChangeSprite(Background, 0, 0, _backgroundSprites);
+        CurrentPipeSprite = ChangeSprite(Pipe, 0, 0, _pipeSprites);
     }
-    private void LoadBirdSprites()
-    {
-        var allBirdSprites = Resources.LoadAll<Sprite>($"Sprites/Birds");
-
-        _birdSprites = new List<Sprite>();
-        for (int i = 0; i < allBirdSprites.Length; i++)
-        {
-            if (i % 3 == 0)
-                _birdSprites.Add(allBirdSprites[i]);
-        }
-    }
-    private void LoadHatSprites()
-    {
-        _hatSprites = Resources.LoadAll<Sprite>("Sprites/Hats").ToList();
-    }
-    private void LoadBackgroundSprites()
-    {
-        _backgroundSprites = Resources.LoadAll<Sprite>("Sprites/Backgrounds").ToList();
-    }
-    private void LoadPipeSprites()
-    {
-        _pipeSprites = Resources.LoadAll<Sprite>("Sprites/Pipes").ToList();
-    }
-
     public void ChangeBirdSprite(int next)
     {
-        currentBirdSprite = ChangeSprite(bird, currentBirdSprite, next, _birdSprites);
+        CurrentBirdSprite = ChangeSprite(Bird, CurrentBirdSprite, next * 3, _birdSprites);
     }
     public void ChangeHatSprite(int next)
     {
-        currentHatSprite = ChangeSprite(hat, currentHatSprite, next, _hatSprites);
+        CurrentHatSprite = ChangeSprite(Hat, CurrentHatSprite, next, _hatSprites);
     }
     public void ChangeBackgroundSprite(int next)
     {
-        currentBackgroundSprite = ChangeSprite(background, currentBackgroundSprite, next, _backgroundSprites);
+        CurrentBackgroundSprite = ChangeSprite(Background, CurrentBackgroundSprite, next, _backgroundSprites);
     }
     public void ChangePipeSprite(int next)
     {
-        currentPipeSprite = ChangeSprite(pipe, currentPipeSprite, next, _pipeSprites);
+        CurrentPipeSprite = ChangeSprite(Pipe, CurrentPipeSprite, next, _pipeSprites);
     }
 
     private int ChangeSprite(GameObject objToChange, int currentSprite, int next, List<Sprite> sprites)
@@ -73,14 +56,13 @@ public class ChangeSpriteScript : MonoBehaviour
 
         if (nextSprite < 0)
         {
-            objToChange.GetComponent<Image>().sprite = sprites[lastSpriteIndex];
-            return lastSpriteIndex;
+            if (objToChange.Equals(Bird))
+                nextSprite = lastSpriteIndex - 2;
+            else
+                nextSprite = lastSpriteIndex;
         }
-        else if (nextSprite > lastSpriteIndex)
-        {
-            objToChange.GetComponent<Image>().sprite = sprites[0];
-            return 0;
-        }
+        else if (nextSprite > lastSpriteIndex) nextSprite = 0;
+
         objToChange.GetComponent<Image>().sprite = sprites[nextSprite];
 
         return nextSprite;
