@@ -13,6 +13,7 @@ public class DontDestroy : MonoBehaviour
 
         gameObject.GetComponent<AudioSoucreScript>().SetUpVolume();
     }
+
     private void Update()
     {
         if (SceneManager.GetActiveScene().name != "PlayScene")

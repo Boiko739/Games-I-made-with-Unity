@@ -15,6 +15,7 @@ public class ChangeSpriteScript : MonoBehaviour
     public int CurrentPipeSprite { get; private set; } = 0;
 
     public GameObject Bird, Hat, Background, Pipe;
+
     [SerializeField]
     private List<Sprite> _birdSprites, _hatSprites, _backgroundSprites, _pipeSprites;
 
@@ -25,6 +26,7 @@ public class ChangeSpriteScript : MonoBehaviour
         _backgroundSprites = Resources.LoadAll<Sprite>("Sprites/Backgrounds").ToList();
         _pipeSprites = Resources.LoadAll<Sprite>("Sprites/Pipes").ToList();
     }
+
     public void SetByDefault()
     {
         CurrentBirdSprite = ChangeSprite(Bird, 0, 0, _birdSprites);
@@ -32,18 +34,22 @@ public class ChangeSpriteScript : MonoBehaviour
         CurrentBackgroundSprite = ChangeSprite(Background, 0, 0, _backgroundSprites);
         CurrentPipeSprite = ChangeSprite(Pipe, 0, 0, _pipeSprites);
     }
+
     public void ChangeBirdSprite(int next)
     {
         CurrentBirdSprite = ChangeSprite(Bird, CurrentBirdSprite, next * 3, _birdSprites);
     }
+
     public void ChangeHatSprite(int next)
     {
         CurrentHatSprite = ChangeSprite(Hat, CurrentHatSprite, next, _hatSprites);
     }
+
     public void ChangeBackgroundSprite(int next)
     {
         CurrentBackgroundSprite = ChangeSprite(Background, CurrentBackgroundSprite, next, _backgroundSprites);
     }
+
     public void ChangePipeSprite(int next)
     {
         CurrentPipeSprite = ChangeSprite(Pipe, CurrentPipeSprite, next, _pipeSprites);

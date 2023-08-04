@@ -7,6 +7,7 @@ public class VolumeScrollbar : MonoBehaviour
     {
         gameObject.GetComponent<Scrollbar>().value = PlayerPrefs.GetFloat("volume");
     }
+
     public void SaveVolumeValue()
     {
         float value = gameObject.GetComponent<Scrollbar>().value;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BirdScript : View
 {
-    public Sprite[] sprites;
+    public Sprite[] Sprites;
     private float _flapStrength = 12;
     private int _timeForSkinChanging = 200;
     private bool _birdIsAlive = true;
@@ -22,16 +22,15 @@ public class BirdScript : View
     {
         gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("volume");
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = sprites[(short)BirdSkins.UsualBird];
+        GetComponent<SpriteRenderer>().sprite = Sprites[(short)BirdSkins.UsualBird];
 
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (!_logic.PlayerIsPlaying && transform.position.y <= 0)
@@ -41,16 +40,18 @@ public class BirdScript : View
         if (gameObject.transform.position.y <= -100)
             Destroy(gameObject);
     }
+
     private async void Flap(short divider = 1)
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.up * _flapStrength / divider;
         await ChangeSkin();
     }
+
     private async Task ChangeSkin(BirdSkins skin = BirdSkins.FlappingBird)
     {
         if (_spriteRenderer == null)
             return;
-        _spriteRenderer.sprite = sprites[((short)skin)];
+        _spriteRenderer.sprite = Sprites[((short)skin)];
 
         if (skin == BirdSkins.FlappingBird)
         {
@@ -60,11 +61,13 @@ public class BirdScript : View
                 await ChangeSkin(BirdSkins.UsualBird);
         }
     }
+
     private void OnBecameInvisible()
     {
         if (_logic != null)
             OnCollisionEnter2D(new Collision2D());
     }
+
     private async void OnCollisionEnter2D(Collision2D collision)
     {
         if (_birdIsAlive)
@@ -76,7 +79,7 @@ public class BirdScript : View
 
     public override void SetSkin(string path)
     {
-        for (int i = 0; i < sprites.Length; i++)
-            sprites[i] = (Sprite)Resources.Load($"Assets/BirdSkins/{path}/{sprites[i]}");
+        for (int i = 0; i < Sprites.Length; i++)
+            Sprites[i] = (Sprite)Resources.Load($"Assets/BirdSkins/{path}/{Sprites[i]}");
     }
 }

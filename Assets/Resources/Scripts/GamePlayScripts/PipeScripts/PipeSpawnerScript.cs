@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class PipeSpawnerScript : MonoBehaviour
 {
-    public GameObject pipe, pipeContainer;
+    public GameObject Pipe, 
+                      PipeContainer;
     private LogicScript _logic;
     private FunctionTimer _timer;
+    private readonly float _pipeSpawnDelay = 2f,
+                           _pipeSpawnOffset = 4f;
 
-    private float _pipeSpawnDelay = 2f;
-    private float _pipeSpawnOffset = 4f;
-
-    // Start is called before the first frame update
     void Start()
     {
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
         gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         FunctionTimer.StartAndUpdateTimer(ref _timer, _pipeSpawnDelay, SpawnPipes);
@@ -33,7 +31,7 @@ public class PipeSpawnerScript : MonoBehaviour
 
         Vector3 pos = new(transform.position.x, Random.Range(lowestPoint, highestPoint), 0);
 
-        var pipeClone = Instantiate(pipe, pos, transform.rotation);
-        pipeClone.transform.parent = pipeContainer.transform;
+        var pipeClone = Instantiate(Pipe, pos, transform.rotation);
+        pipeClone.transform.parent = PipeContainer.transform;
     }
 }

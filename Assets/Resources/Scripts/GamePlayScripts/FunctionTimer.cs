@@ -4,8 +4,8 @@ using UnityEngine;
 public class FunctionTimer
 {
     private Action _action;
-    private float _inputTimer;
-    private float _timer;
+    private float _inputTimer,
+                  _timer;
     private bool _once;
 
     public FunctionTimer(Action action, float timer)
@@ -26,6 +26,7 @@ public class FunctionTimer
                 _timer = _inputTimer;
         }
     }
+
     public static void StartAndUpdateTimer(ref FunctionTimer timer, float delay, Action action)
     {
         if (timer == null)

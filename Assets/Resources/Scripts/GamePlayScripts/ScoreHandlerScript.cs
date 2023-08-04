@@ -14,6 +14,7 @@ public class ScoreHandlerScript : MonoBehaviour
         LoadHighScore();
         ShowScore();
     }
+
     [ContextMenu("Increase Score")]
     internal void AddScore()
     {
@@ -22,23 +23,24 @@ public class ScoreHandlerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the score. Also updates the highscore
+    /// Updates the score and the highscore
     /// </summary>
     internal void ShowScore()
     {
-        _logic.scoreText.text = PlayerScore.ToString();
+        _logic.ScoreText.text = PlayerScore.ToString();
         if (PlayerScore > HighScore)
         {
             HighScore = PlayerScore;
             SaveHighScore();
         }
-        _logic.highScoreText.text = $"{HighScore}";
+        _logic.HighScoreText.text = $"{HighScore}";
     }
 
     internal void LoadHighScore()
     {
         HighScore = PlayerPrefs.GetInt("HighScore");
     }
+
     internal void SaveHighScore()
     {
         PlayerPrefs.SetInt("HighScore", HighScore);

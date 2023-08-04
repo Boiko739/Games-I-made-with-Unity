@@ -7,8 +7,8 @@ public class LogicScript : MonoBehaviour
 {
     #region ReferencesRegion
 
-    public Text scoreText, textClickToPlay, highScoreText;
-    public GameObject pipeSpawner, gameOverScreen, pipes, scoreHandler, locale;
+    public Text ScoreText, TextClickToPlay, HighScoreText;
+    public GameObject PipeSpawner, GameOverScreen, Pipes, ScoreHandler, Locale;
 
     #endregion ReferencesRegion
 
@@ -18,8 +18,8 @@ public class LogicScript : MonoBehaviour
     private readonly int _maxScoreToIncreaseSpeed = 100;
 
     private readonly short _deadZone = -30;
-    private readonly float _showHintDelayAfterStart = 2.5f;
-    private readonly float _flashHintDelay = 1.5f;
+    private readonly float _showHintDelayAfterStart = 2.5f,
+                           _flashHintDelay = 1.5f;
     private FunctionTimer _timer;
 
     #endregion VariablesRegion
@@ -51,16 +51,17 @@ public class LogicScript : MonoBehaviour
             }
         }
     }
+
     private void FixedUpdate()
     {
         if (!PlayerIsPlaying)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left))
             {
-                pipeSpawner.SetActive(true);
+                PipeSpawner.SetActive(true);
                 PlayerIsPlaying = true;
                 HintIsShowing = false;
-                pipeSpawner.GetComponent<PipeSpawnerScript>().SpawnPipes();
+                PipeSpawner.GetComponent<PipeSpawnerScript>().SpawnPipes();
                 return;
             }
             if (!HintIsShowing)
@@ -71,46 +72,52 @@ public class LogicScript : MonoBehaviour
                     _timer = null;
             }
         }
-
         if (HintIsShowing) FlashHint();
-        else textClickToPlay.enabled = false;
+        else TextClickToPlay.enabled = false;
     }
+
     private void SetHintIsShowingToTrue()
     {
         HintIsShowing = true;
     }
+
     private void FlashHint()
     {
-        if (!PlayerIsPlaying && textClickToPlay != null)
+        if (!PlayerIsPlaying && TextClickToPlay != null)
             FunctionTimer.StartAndUpdateTimer(ref _timer, _flashHintDelay, SwitchTextCondition);
         else
             HintIsShowing = false;
     }
+
     private void SwitchTextCondition()
     {
-        textClickToPlay.enabled = !textClickToPlay.enabled;
+        TextClickToPlay.enabled = !TextClickToPlay.enabled;
     }
+
     public void OnScoreIncreased()
     {
-        var sh = scoreHandler.GetComponent<ScoreHandlerScript>();
+        var sh = ScoreHandler.GetComponent<ScoreHandlerScript>();
 
         sh.AddScore();
         if (sh.PlayerScore <= _maxScoreToIncreaseSpeed)
-            pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
+            Pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
     }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        pipes.GetComponent<PipeMoveScript>().ResetSpeed();
+        Pipes.GetComponent<PipeMoveScript>().ResetSpeed();
     }
+
     public void OnMainMenuButtonClick()
     {
         SceneManager.LoadScene("MainMenuScene");
     }
+
     public void GameOver()
     {
-        if (!gameOverScreen.IsUnityNull())
-            gameOverScreen.SetActive(true);
+        if (!GameOverScreen.IsUnityNull())
+            GameOverScreen.SetActive(true);
     }
 
     /// <summary>
@@ -124,13 +131,12 @@ public class LogicScript : MonoBehaviour
         float[] range = new float[2];
         if (pipeIsCalling)
         {
-            var playerScore = scoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore;
+            var playerScore = ScoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore;
             //here I increase the spawn offset depend on the limit to speed up
             spawnOffset = playerScore < SCORE_LIMIT_TO_SPEED_UP ?
                 spawnOffset += SPAWN_OFFSET_INCREASER * (playerScore / SCORE_LIMIT_TO_SPEED_UP) :
                 spawnOffset += SPAWN_OFFSET_INCREASER;
         }
-
         range[0] = pos - spawnOffset;
         range[1] = pos + spawnOffset;
 

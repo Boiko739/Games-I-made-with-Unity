@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class HighscoreTable : MonoBehaviour
 {
-    private Transform _entryContainer, _entryTemplate;
+    private Transform _entryContainer,
+                      _entryTemplate;
     private List<HighscoreEntry> _highscoreEntryList;
     private List<Transform> _highscoreEntryTransformList;
-
 
     private void Awake()
     {
@@ -81,6 +81,7 @@ public class HighscoreTable : MonoBehaviour
         highscoreEntries.Add(new HighscoreEntry { score = score, Date = date });
         SaveHighscores(highscoreEntries);
     }
+
     private void CreateHighscoreEntryTransform(HighscoreEntry highScoreEntry, Transform container, List<Transform> transformlList)
     {
         short templateHeight = 72;
@@ -98,7 +99,6 @@ public class HighscoreTable : MonoBehaviour
         entryTransform.Find("DateEntry").GetComponent<Text>().text = highScoreEntry.Date;
 
         transformlList.Add(entryTransform);
-
     }
 
     public void ResetScoreboard()
@@ -107,8 +107,8 @@ public class HighscoreTable : MonoBehaviour
         _highscoreEntryTransformList.Clear();
         SaveHighscores(new List<HighscoreEntry>());
         ShowEntries(LoadHighscores());
-
     }
+
     [Serializable]
     private sealed class Highscores
     {
@@ -118,6 +118,7 @@ public class HighscoreTable : MonoBehaviour
             highscoreEntryList = highscores;
         }
     }
+
     [Serializable]
     private sealed class HighscoreEntry
     {
