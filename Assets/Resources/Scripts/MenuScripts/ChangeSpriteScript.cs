@@ -73,4 +73,13 @@ public class ChangeSpriteScript : MonoBehaviour
 
         return nextSprite;
     }
+
+    public List<Sprite> GetAllSprites()
+    {
+        var list = _birdSprites.GetRange(CurrentBirdSprite, 3);
+        list.Add(_hatSprites[CurrentHatSprite]);
+        list.Add(_backgroundSprites[CurrentBackgroundSprite]);
+        list.Add(_pipeSprites[CurrentPipeSprite]);
+        return list;
+    }
 }

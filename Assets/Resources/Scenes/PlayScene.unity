@@ -365,8 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae37b47c9ebd1184c9974b7240668755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clouds: {fileID: 6054569363724889211, guid: d050a96335f275644bc361e450b032a3, type: 3}
-  cloudContainer: {fileID: 18810285}
+  Clouds: {fileID: 6054569363724889211, guid: d050a96335f275644bc361e450b032a3, type: 3}
+  CloudContainer: {fileID: 18810285}
 --- !u!1 &302005648
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,15 +689,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 569206220, guid: 59337a7648349114eb7d03fb977910df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3834231899efab24ead029477f9d887c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.9033333, y: 1.63}
+  m_Size: {x: 1.89, y: 1.63}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &548140770
@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7f0e8683b1bce458a0e4cdb72ccf03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
+  Sprites:
   - {fileID: 21300000, guid: 3834231899efab24ead029477f9d887c, type: 3}
   - {fileID: 21300000, guid: 2a6aa4aea16728d44b32e5fc971c67c0, type: 3}
   - {fileID: 21300000, guid: 9edc603e0d24bdd4fbc1bae6e033c997, type: 3}
@@ -1033,14 +1033,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17af3c3ffe686a243abf2a4946799fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 858429233}
-  textClickToPlay: {fileID: 1732714429}
-  highScoreText: {fileID: 1489003674}
-  pipeSpawner: {fileID: 1856510709}
-  gameOverScreen: {fileID: 1701062360}
-  pipes: {fileID: 3410607188487633486, guid: 47b0c7a3bcc1ff24183a986279edeee1, type: 3}
-  scoreHandler: {fileID: 1224346241}
-  locale: {fileID: 0}
+  ScoreText: {fileID: 0}
+  TextClickToPlay: {fileID: 0}
+  HighScoreText: {fileID: 0}
+  PipeSpawner: {fileID: 0}
+  GameOverScreen: {fileID: 0}
+  Pipes: {fileID: 0}
+  ScoreHandler: {fileID: 0}
+  Locale: {fileID: 0}
 --- !u!4 &764901754
 Transform:
   m_ObjectHideFlags: 0
@@ -1997,8 +1997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190a3c9b7a9d3540848e57555916c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pipe: {fileID: 3410607188487633486, guid: 47b0c7a3bcc1ff24183a986279edeee1, type: 3}
-  pipeContainer: {fileID: 1041347765}
+  Pipe: {fileID: 3410607188487633486, guid: 47b0c7a3bcc1ff24183a986279edeee1, type: 3}
+  PipeContainer: {fileID: 1041347765}
 --- !u!4 &1856510711
 Transform:
   m_ObjectHideFlags: 0

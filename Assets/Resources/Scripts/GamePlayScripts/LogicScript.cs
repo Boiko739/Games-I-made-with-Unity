@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,20 +8,23 @@ public class LogicScript : MonoBehaviour
 {
     #region ReferencesRegion
 
-    public Text ScoreText, TextClickToPlay, HighScoreText;
-    public GameObject PipeSpawner, GameOverScreen, Pipes, ScoreHandler, Locale;
+    private GameObject PipeSpawner,
+                       GameOverScreen,
+                       Pipes,
+                       ScoreHandler;
 
     #endregion ReferencesRegion
 
     #region VariablesRegion
 
-    private const float SPAWN_OFFSET_INCREASER = 1.5f, SCORE_LIMIT_TO_SPEED_UP = 20f;
-    private readonly int _maxScoreToIncreaseSpeed = 100;
+    private const float SPAWN_OFFSET_INCREASER = 1.5f,
+                        MAX_SCORE_TO_INCREASE_SPAWN_OFFSET = 20f,
+                        MAX_SCORE_TO_INCREASE_SPEED = 100f,
+                        SHOW_HINT_DELAY_AFTER_START = 2.5f,//in seconds
+                        FLASH_HINT_DELAY = 1.5f;           //same
 
-    private readonly short _deadZone = -30;
-    private readonly float _showHintDelayAfterStart = 2.5f,
-                           _flashHintDelay = 1.5f;
     private FunctionTimer _timer;
+    private Text _scoreText, _highscoreText;
 
     #endregion VariablesRegion
 
@@ -28,13 +32,31 @@ public class LogicScript : MonoBehaviour
 
     private bool GameIsPaused { get; set; } = false;
     public bool PlayerIsPlaying { get; private set; } = false;
-    public float DeadZone { get => _deadZone; }
+    public float DeadZone { get; } = -30f;
     private bool HintIsShowing { get; set; } = false;
+    private TextMeshProUGUI TextClickToPlay { get; set; }
+    public Text ScoreText { get => _scoreText; private set => _scoreText = value; }
+    public Text HighscoreText { get => _highscoreText; private set => _highscoreText = value; }
 
     #endregion PropertiesRegion
 
     public delegate void SpawnDelegate();
 
+    private void Awake()
+    {
+        var spawners = GameObject.FindGameObjectWithTag("Spawners");
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+
+        Pipes = GameObject.FindGameObjectWithTag("Pipes");
+        PipeSpawner = spawners.transform.Find("PipeSpawner").gameObject;
+
+        ScoreHandler = transform.GetChild(0).gameObject;
+        ScoreText = canvas.transform.Find("PlayerScore").GetComponent<Text>();
+        HighscoreText = canvas.transform.Find("Highscore").GetComponent<Text>();
+
+        TextClickToPlay = canvas.transform.Find("ClickToPlayText").GetComponent<TextMeshProUGUI>();
+        GameOverScreen = canvas.transform.Find("GameOverScreen").gameObject;
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -67,11 +89,12 @@ public class LogicScript : MonoBehaviour
             if (!HintIsShowing)
             {
                 FunctionTimer.StartAndUpdateTimer
-                    (ref _timer, _showHintDelayAfterStart, SetHintIsShowingToTrue);
+                    (ref _timer, SHOW_HINT_DELAY_AFTER_START, SetHintIsShowingToTrue);
                 if (HintIsShowing)
                     _timer = null;
             }
         }
+
         if (HintIsShowing) FlashHint();
         else TextClickToPlay.enabled = false;
     }
@@ -84,7 +107,7 @@ public class LogicScript : MonoBehaviour
     private void FlashHint()
     {
         if (!PlayerIsPlaying && TextClickToPlay != null)
-            FunctionTimer.StartAndUpdateTimer(ref _timer, _flashHintDelay, SwitchTextCondition);
+            FunctionTimer.StartAndUpdateTimer(ref _timer, FLASH_HINT_DELAY, SwitchTextCondition);
         else
             HintIsShowing = false;
     }
@@ -99,7 +122,7 @@ public class LogicScript : MonoBehaviour
         var sh = ScoreHandler.GetComponent<ScoreHandlerScript>();
 
         sh.AddScore();
-        if (sh.PlayerScore <= _maxScoreToIncreaseSpeed)
+        if (sh.PlayerScore <= MAX_SCORE_TO_INCREASE_SPEED)
             Pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
     }
 
@@ -132,9 +155,9 @@ public class LogicScript : MonoBehaviour
         if (pipeIsCalling)
         {
             var playerScore = ScoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore;
-            //here I increase the spawn offset depend on the limit to speed up
-            spawnOffset = playerScore < SCORE_LIMIT_TO_SPEED_UP ?
-                spawnOffset += SPAWN_OFFSET_INCREASER * (playerScore / SCORE_LIMIT_TO_SPEED_UP) :
+
+            spawnOffset = playerScore < MAX_SCORE_TO_INCREASE_SPAWN_OFFSET ?
+                spawnOffset += SPAWN_OFFSET_INCREASER * (playerScore / MAX_SCORE_TO_INCREASE_SPAWN_OFFSET) :
                 spawnOffset += SPAWN_OFFSET_INCREASER;
         }
         range[0] = pos - spawnOffset;

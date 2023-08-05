@@ -1,24 +1,27 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreHandlerScript : MonoBehaviour
 {
     private static int HighScore;
-    private readonly short _scoreToAdd = 1;
-    private LogicScript _logic;
-    public int PlayerScore { get; set; } = 0;
-    public short ScoreToAdd { get => _scoreToAdd; }
+    private Text _scoreText,
+                 _highcoreText;
+    public int PlayerScore { get; private set; } = 0;
+    public const short SCORE_TO_ADD = 1;
 
     private void Start()
     {
-        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
-        LoadHighScore();
+        var logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
+        _scoreText = logic.ScoreText;
+        _highcoreText = logic.HighscoreText;
+        HighScore = PlayerPrefs.GetInt("HighScore");
         ShowScore();
     }
 
     [ContextMenu("Increase Score")]
     internal void AddScore()
     {
-        PlayerScore += ScoreToAdd;
+        PlayerScore += SCORE_TO_ADD;
         ShowScore();
     }
 
@@ -27,22 +30,12 @@ public class ScoreHandlerScript : MonoBehaviour
     /// </summary>
     internal void ShowScore()
     {
-        _logic.ScoreText.text = PlayerScore.ToString();
+        _scoreText.text = PlayerScore.ToString();
         if (PlayerScore > HighScore)
         {
             HighScore = PlayerScore;
-            SaveHighScore();
+            PlayerPrefs.SetInt("HighScore", HighScore);
         }
-        _logic.HighScoreText.text = $"{HighScore}";
-    }
-
-    internal void LoadHighScore()
-    {
-        HighScore = PlayerPrefs.GetInt("HighScore");
-    }
-
-    internal void SaveHighScore()
-    {
-        PlayerPrefs.SetInt("HighScore", HighScore);
+        _highcoreText.text = $"{HighScore}";
     }
 }
