@@ -12,12 +12,13 @@ public class PipeMoveScript : MonoBehaviour
     private void Start()
     {
         _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
+        gameObject.SetActive(false);
     }
 
     private void Update()
     {
         transform.position += PipeMoveSpeed * Time.deltaTime * Vector3.left;
-        if (transform.position.x < _logic.DeadZone)
+        if (transform.position.x < LogicScript.DEAD_ZONE)
             Destroy(gameObject);
     }
 

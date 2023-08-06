@@ -15,6 +15,13 @@ public class PipeSpawnerScript : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void Awake()
+    {
+        Pipe = GameObject.FindGameObjectWithTag("Pipes");
+        PipeContainer = GameObject.FindGameObjectWithTag("Containers")
+                         .transform.Find("PipesContainer").gameObject;
+    }
+
     void Update()
     {
         FunctionTimer.StartAndUpdateTimer(ref _timer, _pipeSpawnDelay, SpawnPipes);
@@ -25,13 +32,14 @@ public class PipeSpawnerScript : MonoBehaviour
         float lowestPoint;
         float highestPoint;
 
-        var range = _logic.DefineSpawnRange(transform.position.y, _pipeSpawnOffset, pipeIsCalling: true);
+        float[] range = _logic.DefineSpawnRange(transform.position.y, _pipeSpawnOffset, pipeIsCalling: true);
         lowestPoint = range[0];
         highestPoint = range[1];
 
         Vector3 pos = new(transform.position.x, Random.Range(lowestPoint, highestPoint), 0);
 
         var pipeClone = Instantiate(Pipe, pos, transform.rotation);
+        pipeClone.SetActive(true);
         pipeClone.transform.parent = PipeContainer.transform;
     }
 }

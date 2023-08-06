@@ -22,7 +22,7 @@ public class CloudSpawnerScript : MonoBehaviour, ISpawner
 
     private void SpawnCloudsOnStart(float xPositionToStop)
     {
-        transform.position = new Vector3(_logic.DeadZone, transform.position.y, transform.position.z);
+        transform.position = new Vector3(LogicScript.DEAD_ZONE, transform.position.y, transform.position.z);
         while (transform.position.x < xPositionToStop)
         {
             SpawnItself();

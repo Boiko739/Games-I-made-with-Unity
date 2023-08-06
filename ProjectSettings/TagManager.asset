@@ -8,6 +8,9 @@ TagManager:
   - Bird
   - Pipes
   - Music
+  - Canvas
+  - Spawners
+  - Containers
   layers:
   - Default
   - TransparentFX

@@ -99,6 +99,10 @@ MonoBehaviour:
     m_Key: Main Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 9357438921646080
+    m_Key: Hint
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

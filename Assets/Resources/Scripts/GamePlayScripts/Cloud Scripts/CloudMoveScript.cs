@@ -13,7 +13,7 @@ public class CloudMoveScript : MonoBehaviour
     void Update()
     {
         transform.position += (Vector3.left * _cloudMoveSpeed) * Time.deltaTime;
-        if (transform.position.x < _logic.DeadZone)
+        if (transform.position.x < LogicScript.DEAD_ZONE)
             Destroy(gameObject);
     }
 }

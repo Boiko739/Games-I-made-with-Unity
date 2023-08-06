@@ -102,6 +102,10 @@ MonoBehaviour:
     m_Localized: Main Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 9357438921646080
+    m_Localized: Left click or tap spacebar to start
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
