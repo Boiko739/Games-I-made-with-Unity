@@ -2,17 +2,14 @@ using UnityEngine;
 
 public class PipeMoveScript : MonoBehaviour
 {
-    private LogicScript _logic;
-
     private const float DEFAULT_PIPE_MOVE_SPEED = 10f;
     private static float _pipeMoveSpeed = 10f;
 
     public float PipeMoveSpeed { get => _pipeMoveSpeed; private set => _pipeMoveSpeed = value; }
 
     private void Start()
-    {
-        _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
-        gameObject.SetActive(false);
+    {/*
+        gameObject.SetActive(false);*/
     }
 
     private void Update()

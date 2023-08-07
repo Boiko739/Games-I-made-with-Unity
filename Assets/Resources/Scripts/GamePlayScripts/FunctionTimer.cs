@@ -20,8 +20,7 @@ public class FunctionTimer
         _timer -= Time.deltaTime;
         if (_timer <= 0)
         {
-            if (_action != null)
-                _action.Invoke();
+            _action?.Invoke();
             if (!_once)
                 _timer = _inputTimer;
         }
@@ -29,9 +28,7 @@ public class FunctionTimer
 
     public static void StartAndUpdateTimer(ref FunctionTimer timer, float delay, Action action)
     {
-        if (timer == null)
-            timer = new FunctionTimer(action, delay);
+        timer ??= new FunctionTimer(action, delay);
         timer.Update();
-
     }
 }

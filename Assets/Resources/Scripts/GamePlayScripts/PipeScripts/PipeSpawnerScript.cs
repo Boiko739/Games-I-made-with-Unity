@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PipeSpawnerScript : MonoBehaviour
 {
-    public GameObject Pipe, 
+    private GameObject Pipe, 
                       PipeContainer;
     private LogicScript _logic;
     private FunctionTimer _timer;
@@ -17,9 +17,8 @@ public class PipeSpawnerScript : MonoBehaviour
 
     private void Awake()
     {
-        Pipe = GameObject.FindGameObjectWithTag("Pipes");
-        PipeContainer = GameObject.FindGameObjectWithTag("Containers")
-                         .transform.Find("PipesContainer").gameObject;
+        PipeContainer = GameObject.FindGameObjectWithTag("Containers").
+            transform.Find("PipesContainer").gameObject;
     }
 
     void Update()
@@ -29,6 +28,7 @@ public class PipeSpawnerScript : MonoBehaviour
 
     public void SpawnPipes()
     {
+        Pipe = Pipe == null ? _logic.Pipes : Pipe;
         float lowestPoint;
         float highestPoint;
 

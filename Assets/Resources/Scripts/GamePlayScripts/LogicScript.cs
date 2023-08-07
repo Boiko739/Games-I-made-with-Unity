@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
+    public const float DEAD_ZONE = -30f;
+
     private GameObject GameOverScreen,
                        ScoreHandler;
 
@@ -24,25 +26,24 @@ public class LogicScript : MonoBehaviour
 
     #region PropertiesRegion
 
-    public const float DEAD_ZONE = -30f;
     public bool PlayerIsPlaying { get; private set; } = false;
     public GameObject Pipes { get; private set; }
     public GameObject PipeSpawner { get; private set; }
     public Text ScoreText { get => _scoreText; private set => _scoreText = value; }
-    public Text HighscoreText { get ; private set; }
+    public Text HighscoreText { get; private set; }
 
     #endregion PropertiesRegion
 
     public delegate void SpawnDelegate();
 
-    private void Awake()
+    private void Start()
     {
         var spawners = GameObject.FindGameObjectWithTag("Spawners");
         var canvas = GameObject.FindGameObjectWithTag("Canvas");
 
-        Pipes = GameObject.FindGameObjectWithTag("Pipes");
+        Pipes = Resources.Load<GameObject>("Sprites/Pipes");
         PipeSpawner = spawners.transform.Find("PipeSpawner").gameObject;
-        
+
         ScoreHandler = transform.GetChild(0).gameObject;
         ScoreText = canvas.transform.Find("PlayerScore").GetComponent<Text>();
         HighscoreText = canvas.transform.Find("Highscore").GetComponent<Text>();
@@ -50,25 +51,19 @@ public class LogicScript : MonoBehaviour
         _textClickToPlay = canvas.transform.Find("ClickToPlayText").GetComponent<TextMeshProUGUI>();
         GameOverScreen = canvas.transform.Find("GameOverScreen").gameObject;
     }
-    private void Update()
+    private void CheckPause()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_gameIsPaused)
-            {
-                Time.timeScale = 1;
-                _gameIsPaused = false;
-            }
-            else
-            {
-                Time.timeScale = 0;
-                _gameIsPaused = true;
-            }
+            Time.timeScale = _gameIsPaused ? 1 : 0;
+            _gameIsPaused = !_gameIsPaused;
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        CheckPause();
+
         if (!PlayerIsPlaying)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left))
