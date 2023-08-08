@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HighscoreTable : MonoBehaviour
 {
+    private const short TEMPLATE_HEIGHT = 72;
     private Transform _entryContainer,
                       _entryTemplate;
     private List<HighscoreEntry> _highscoreEntryList;
@@ -82,12 +83,11 @@ public class HighscoreTable : MonoBehaviour
         SaveHighscores(highscoreEntries);
     }
 
-    private void CreateHighscoreEntryTransform(HighscoreEntry highScoreEntry, Transform container, List<Transform> transformlList)
+    private void CreateHighscoreEntryTransform(HighscoreEntry highScoreEntry,
+                                               Transform container, List<Transform> transformlList)
     {
-        short templateHeight = 72;
-
         Transform entryTransform = Instantiate(_entryTemplate, container);
-        entryTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -templateHeight * transformlList.Count);
+        entryTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -TEMPLATE_HEIGHT * transformlList.Count);
         entryTransform.gameObject.SetActive(true);
 
         short rank = (short)(transformlList.Count + 1);

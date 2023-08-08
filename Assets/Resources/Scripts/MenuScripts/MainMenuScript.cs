@@ -5,11 +5,12 @@ using UnityEngine.UI;
 public class MainMenuScript : MonoBehaviour
 {
     public Image Image;
-    public GameObject VolumeSetter;
+    private GameObject _volumeSetter;
 
     private void Awake()
     {
-        VolumeSetter.GetComponent<AudioSoucreScript>().SetUpVolume();
+        _volumeSetter = GameObject.FindGameObjectWithTag("Music");
+        _volumeSetter.GetComponent<AudioSoucreScript>().SetUpVolume();
     }
 
     public void PlayGame()

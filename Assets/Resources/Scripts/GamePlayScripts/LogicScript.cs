@@ -48,7 +48,7 @@ public class LogicScript : MonoBehaviour
         ScoreText = canvas.transform.Find("PlayerScore").GetComponent<Text>();
         HighscoreText = canvas.transform.Find("Highscore").GetComponent<Text>();
 
-        _textClickToPlay = canvas.transform.Find("ClickToPlayText").GetComponent<TextMeshProUGUI>();
+        _textClickToPlay = canvas.transform.Find("HintText").GetComponent<TextMeshProUGUI>();
         GameOverScreen = canvas.transform.Find("GameOverScreen").gameObject;
     }
     private void CheckPause()
@@ -114,6 +114,7 @@ public class LogicScript : MonoBehaviour
             Pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
     }
 
+    [ContextMenu("Restart Game")]
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -125,6 +126,7 @@ public class LogicScript : MonoBehaviour
         SceneManager.LoadScene("MainMenuScene");
     }
 
+    [ContextMenu("Game Over")]
     public void GameOver()
     {
         if (!GameOverScreen.IsUnityNull())

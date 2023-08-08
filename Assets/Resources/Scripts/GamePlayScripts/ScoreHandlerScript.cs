@@ -14,7 +14,7 @@ public class ScoreHandlerScript : MonoBehaviour
         var logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
         _scoreText = logic.ScoreText;
         _highcoreText = logic.HighscoreText;
-        HighScore = PlayerPrefs.GetInt("HighScore");
+        HighScore = PlayerPrefs.GetInt("HighestScore");
         ShowScore();
     }
 
@@ -34,7 +34,7 @@ public class ScoreHandlerScript : MonoBehaviour
         if (PlayerScore > HighScore)
         {
             HighScore = PlayerScore;
-            PlayerPrefs.SetInt("HighScore", HighScore);
+            PlayerPrefs.SetInt("HighestScore", HighScore);
         }
         _highcoreText.text = $"{HighScore}";
     }

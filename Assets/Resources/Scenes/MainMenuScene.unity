@@ -3495,7 +3495,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 697750340}
-  VolumeSetter: {fileID: 747480740}
 --- !u!1 &787854836
 GameObject:
   m_ObjectHideFlags: 0
