@@ -1,3 +1,4 @@
+using Score;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -130,7 +131,11 @@ public class LogicScript : MonoBehaviour
     public void GameOver()
     {
         if (!GameOverScreen.IsUnityNull())
+        {
+            if (GameOverScreen.activeInHierarchy)
+                HighscoreManager.AddHighscoreEntry(ScoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore);
             GameOverScreen.SetActive(true);
+        }
     }
 
     /// <summary>
