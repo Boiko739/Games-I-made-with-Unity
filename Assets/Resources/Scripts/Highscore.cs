@@ -5,10 +5,10 @@ using UnityEngine;
 namespace Score
 {
     [Serializable]
-    internal class Highscores
+    internal class Highscore
     {
         public List<HighscoreEntry> highscoreEntryList;
-        public Highscores(List<HighscoreEntry> highscores)
+        public Highscore(List<HighscoreEntry> highscores)
         {
             highscoreEntryList = highscores;
         }
@@ -38,14 +38,14 @@ namespace Score
         internal static void SaveHighscores(List<HighscoreEntry> highscoreEntries)
         {
             HighscoreTable.HighscoreEntryList = highscoreEntries;
-            string json = JsonUtility.ToJson(new Highscores(highscoreEntries));
+            string json = JsonUtility.ToJson(new Highscore(highscoreEntries));
             PlayerPrefs.SetString("highscoreTable", json);
             PlayerPrefs.Save();
         }
 
         internal static List<HighscoreEntry> LoadHighscores()
         {
-            return JsonUtility.FromJson<Highscores>(PlayerPrefs.GetString("highscoreTable")).highscoreEntryList;
+            return JsonUtility.FromJson<Highscore>(PlayerPrefs.GetString("highscoreTable")).highscoreEntryList;
         }
 
         public static void AddHighscoreEntry(int score)
