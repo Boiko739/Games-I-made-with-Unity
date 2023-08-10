@@ -5,19 +5,20 @@ using UnityEngine.UI;
 
 public class ChangeSpriteScript : MonoBehaviour
 {
-    [field:SerializeField]
+    [field: SerializeField]
     public int CurrentBirdSprite { get; private set; } = 0;
-    [field:SerializeField]
+    [field: SerializeField]
     public int CurrentHatSprite { get; private set; } = 0;
-    [field:SerializeField]
+    [field: SerializeField]
     public int CurrentBackgroundSprite { get; private set; } = 0;
-    [field:SerializeField]
+    [field: SerializeField]
     public int CurrentPipeSprite { get; private set; } = 0;
 
-    public GameObject Bird, Hat, Background, Pipe;
+    public GameObject BirdImage, HatImage, BackgroundImage, PipeImage;
 
     [SerializeField]
     private List<Sprite> _birdSprites, _hatSprites, _backgroundSprites, _pipeSprites;
+    public static List<Sprite> GameSprites { get; private set; }
 
     private void Start()
     {
@@ -25,61 +26,62 @@ public class ChangeSpriteScript : MonoBehaviour
         _hatSprites = Resources.LoadAll<Sprite>("Sprites/Hats").ToList();
         _backgroundSprites = Resources.LoadAll<Sprite>("Sprites/Backgrounds").ToList();
         _pipeSprites = Resources.LoadAll<Sprite>("Sprites/Pipes").ToList();
+        if (GameSprites == null) SaveAllSprites();
     }
 
     public void SetByDefault()
     {
-        CurrentBirdSprite = ChangeSprite(Bird, 0, 0, _birdSprites);
-        CurrentHatSprite = ChangeSprite(Hat, 0, 0, _hatSprites);
-        CurrentBackgroundSprite = ChangeSprite(Background, 0, 0, _backgroundSprites);
-        CurrentPipeSprite = ChangeSprite(Pipe, 0, 0, _pipeSprites);
+        CurrentBirdSprite = ChangeSpriteImage(BirdImage, 0, 0, _birdSprites);
+        CurrentHatSprite = ChangeSpriteImage(HatImage, 0, 0, _hatSprites);
+        CurrentBackgroundSprite = ChangeSpriteImage(BackgroundImage, 0, 0, _backgroundSprites);
+        CurrentPipeSprite = ChangeSpriteImage(PipeImage, 0, 0, _pipeSprites);
+        SaveAllSprites();
     }
 
-    public void ChangeBirdSprite(int next)
+    public void ChangeBirdSpriteImage(int next)
     {
-        CurrentBirdSprite = ChangeSprite(Bird, CurrentBirdSprite, next * 3, _birdSprites);
+        CurrentBirdSprite = ChangeSpriteImage(BirdImage, CurrentBirdSprite, next * 3, _birdSprites);
+        SaveAllSprites();
     }
 
-    public void ChangeHatSprite(int next)
+    public void ChangeHatSpriteImage(int next)
     {
-        CurrentHatSprite = ChangeSprite(Hat, CurrentHatSprite, next, _hatSprites);
+        CurrentHatSprite = ChangeSpriteImage(HatImage, CurrentHatSprite, next, _hatSprites);
+        SaveAllSprites();
     }
 
-    public void ChangeBackgroundSprite(int next)
+    public void ChangeBackgroundSpriteImage(int next)
     {
-        CurrentBackgroundSprite = ChangeSprite(Background, CurrentBackgroundSprite, next, _backgroundSprites);
+        CurrentBackgroundSprite = ChangeSpriteImage(BackgroundImage, CurrentBackgroundSprite, next, _backgroundSprites);
+        SaveAllSprites();
     }
 
-    public void ChangePipeSprite(int next)
+    public void ChangePipeSpriteImage(int next)
     {
-        CurrentPipeSprite = ChangeSprite(Pipe, CurrentPipeSprite, next, _pipeSprites);
+        CurrentPipeSprite = ChangeSpriteImage(PipeImage, CurrentPipeSprite, next, _pipeSprites);
+        SaveAllSprites();
     }
 
-    private int ChangeSprite(GameObject objToChange, int currentSprite, int next, List<Sprite> sprites)
+    private int ChangeSpriteImage(GameObject imgToChange, int currentSprite, int next, List<Sprite> sprites)
     {
         int nextSprite = currentSprite + next;
         int lastSpriteIndex = sprites.Count - 1;
 
         if (nextSprite < 0)
-        {
-            if (objToChange.Equals(Bird))
-                nextSprite = lastSpriteIndex - 2;
-            else
-                nextSprite = lastSpriteIndex;
-        }
+            nextSprite = imgToChange.Equals(BirdImage) ? lastSpriteIndex - 2 : lastSpriteIndex;
         else if (nextSprite > lastSpriteIndex) nextSprite = 0;
 
-        objToChange.GetComponent<Image>().sprite = sprites[nextSprite];
+        imgToChange.GetComponent<Image>().sprite = sprites[nextSprite];
 
         return nextSprite;
     }
 
-    public List<Sprite> GetAllSprites()
+    private void SaveAllSprites()
     {
         var list = _birdSprites.GetRange(CurrentBirdSprite, 3);
         list.Add(_hatSprites[CurrentHatSprite]);
         list.Add(_backgroundSprites[CurrentBackgroundSprite]);
         list.Add(_pipeSprites[CurrentPipeSprite]);
-        return list;
+        GameSprites = list;
     }
 }

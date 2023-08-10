@@ -106,6 +106,22 @@ MonoBehaviour:
     m_Localized: Left click or tap spacebar to start
     m_Metadata:
       m_Items: []
+  - m_Id: 11263432073322496
+    m_Localized: Attention!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11263763549167616
+    m_Localized: All the entries will be lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11264176813940736
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11264514212143104
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

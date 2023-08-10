@@ -25,15 +25,11 @@ public class LogicScript : MonoBehaviour
     private Text _scoreText;
     private TextMeshProUGUI _textClickToPlay;
 
-    #region PropertiesRegion
-
     public bool PlayerIsPlaying { get; private set; } = false;
     public GameObject Pipes { get; private set; }
     public GameObject PipeSpawner { get; private set; }
     public Text ScoreText { get => _scoreText; private set => _scoreText = value; }
     public Text HighscoreText { get; private set; }
-
-    #endregion PropertiesRegion
 
     public delegate void SpawnDelegate();
 
@@ -51,6 +47,23 @@ public class LogicScript : MonoBehaviour
 
         _textClickToPlay = canvas.transform.Find("HintText").GetComponent<TextMeshProUGUI>();
         GameOverScreen = canvas.transform.Find("GameOverScreen").gameObject;
+
+        GameObject.FindGameObjectWithTag("Bird").GetComponent<BirdScript>().Sprites = 
+            ChangeSpriteScript.GameSprites.GetRange(0, 3).ToArray();
+
+        //This pice of code is for hat
+
+        /*GameObject.FindWithTag("Hat").transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
+            ChangeSpriteScript.GameSprites[3];*/
+        
+        GameObject.FindWithTag("MainCamera").transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
+            ChangeSpriteScript.GameSprites[4];
+
+        Pipes.transform.Find("TopPipe").GetComponent<SpriteRenderer>().sprite = 
+            ChangeSpriteScript.GameSprites[5];
+        Pipes.transform.Find("BottomPipe").GetComponent<SpriteRenderer>().sprite = 
+            ChangeSpriteScript.GameSprites[5];
+
     }
     private void CheckPause()
     {
@@ -132,7 +145,7 @@ public class LogicScript : MonoBehaviour
     {
         if (!GameOverScreen.IsUnityNull())
         {
-            if (GameOverScreen.activeInHierarchy)
+            if (!GameOverScreen.activeInHierarchy)
                 HighscoreManager.AddHighscoreEntry(ScoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore);
             GameOverScreen.SetActive(true);
         }

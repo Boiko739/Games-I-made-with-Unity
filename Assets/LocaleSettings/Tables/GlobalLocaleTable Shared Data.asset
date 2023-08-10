@@ -103,6 +103,22 @@ MonoBehaviour:
     m_Key: Hint
     m_Metadata:
       m_Items: []
+  - m_Id: 11263432073322496
+    m_Key: Attention
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11263763549167616
+    m_Key: AttentionInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11264176813940736
+    m_Key: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11264514212143104
+    m_Key: Cancel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

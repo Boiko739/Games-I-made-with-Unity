@@ -7,10 +7,6 @@ public class PipeMoveScript : MonoBehaviour
 
     public float PipeMoveSpeed { get => _pipeMoveSpeed; private set => _pipeMoveSpeed = value; }
 
-    private void Start()
-    {/*
-        gameObject.SetActive(false);*/
-    }
 
     private void Update()
     {
