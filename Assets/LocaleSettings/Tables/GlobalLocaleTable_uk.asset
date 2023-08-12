@@ -124,6 +124,11 @@ MonoBehaviour:
     m_Localized: "\u0412\u0438\u0439\u0442\u0438"
     m_Metadata:
       m_Items: []
+  - m_Id: 11954573135486976
+    m_Localized: "\u0445\u0437 \u043F\u0440\u0438\u0454\u043C\u043D\u043E\u0457 \u0433\u0440\u0438)\n\u0421\u043F\u043E\u0434\u0456\u0432\u0430\u044E\u0441\u044C
+      \u0442\u043E\u0431\u0456 \u0441\u043F\u043E\u0434\u043E\u0431\u0430\u0454\u0442\u044C\u0441\u044F"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
