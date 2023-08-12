@@ -31,7 +31,7 @@ public class ChangeSpriteScript : MonoBehaviour
         else
         {
             BirdImage.GetComponent<Image>().sprite = GameSprites[0];
-            HatImage.GetComponent<Image>().sprite = GameSprites[3];
+            HatImage.GetComponent<Image>().sprite = GameSprites[3] == null ? _hatSprites[0] : GameSprites[3];
             BackgroundImage.GetComponent<Image>().sprite = GameSprites[4];
             PipeImage.GetComponent<Image>().sprite = GameSprites[5];
         }
@@ -90,7 +90,8 @@ public class ChangeSpriteScript : MonoBehaviour
         var shortList = _birdSprites.GetRange(CurrentBirdSprite, 3);
         for (int i = 0; i < 3; i++)
             sprites[i] = shortList[i];
-        sprites [3] = _hatSprites[CurrentHatSprite];
+        sprites[3] = _hatSprites[CurrentHatSprite] == _hatSprites[0] ?
+            null : _hatSprites[CurrentHatSprite];
         sprites[4] = _backgroundSprites[CurrentBackgroundSprite];
         sprites[5] = _pipeSprites[CurrentPipeSprite];
         GameSprites = sprites;

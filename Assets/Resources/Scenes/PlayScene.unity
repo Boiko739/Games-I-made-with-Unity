@@ -674,7 +674,7 @@ RectTransform:
   - {fileID: 1701062361}
   - {fileID: 1732714427}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -764,7 +764,7 @@ RectTransform:
   m_Children:
   - {fileID: 1070342631}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1228,7 +1228,7 @@ Transform:
   m_Children:
   - {fileID: 1224346243}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &858429231
 GameObject:
@@ -1777,14 +1777,14 @@ GameObject:
   - component: {fileID: 1225867699}
   - component: {fileID: 1225867702}
   - component: {fileID: 1225867701}
-  - component: {fileID: 1225867703}
+  - component: {fileID: 1225867704}
   m_Layer: 3
   m_Name: Hat
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1225867699
 Transform:
   m_ObjectHideFlags: 0
@@ -1812,10 +1812,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.05
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1873,36 +1873,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &1225867703
-EdgeCollider2D:
+--- !u!255 &1225867704
+FixedJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225867698}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 1.3288269, y: -0.15340215}
-  - {x: -1.5751705, y: -0.16622895}
-  - {x: -1.4217825, y: 0.002655387}
-  - {x: -0.6814642, y: 0.005968392}
-  - {x: -0.551671, y: 0.326748}
-  - {x: -0.30784988, y: 0.60331845}
-  - {x: 0.10566807, y: 0.8027203}
-  - {x: 0.67012596, y: 0.79490244}
-  - {x: 1.1127644, y: 0.47634292}
-  - {x: 1.3626846, y: -0.11156505}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 548140766}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -0.21415718, y: 0.4100927}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &1489003672
 GameObject:
   m_ObjectHideFlags: 0

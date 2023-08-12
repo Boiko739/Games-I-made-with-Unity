@@ -36,29 +36,27 @@ public class LogicScript : MonoBehaviour
 
     private void Start()
     {
-        var spawners = GameObject.FindGameObjectWithTag("Spawners");
-        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        var spawners = GameObject.FindGameObjectWithTag("Spawners").transform;
+        var canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
 
         Pipes = Resources.Load<GameObject>("Sprites/Pipes");
-        PipeSpawner = spawners.transform.Find("PipeSpawner").gameObject;
+        PipeSpawner = spawners.Find("PipeSpawner").gameObject;
 
-        ScoreHandler = transform.GetChild(0).gameObject;
-        ScoreText = canvas.transform.Find("PlayerScore").GetComponent<Text>();
-        HighscoreText = canvas.transform.Find("Highscore").GetComponent<Text>();
+        ScoreHandler = this.transform.GetChild(0).gameObject;
+        ScoreText = canvas.Find("PlayerScore").GetComponent<Text>();
+        HighscoreText = canvas.Find("Highscore").GetComponent<Text>();
 
-        _textClickToPlay = canvas.transform.Find("HintText").GetComponent<TextMeshProUGUI>();
-        GameOverScreen = canvas.transform.Find("GameOverScreen").gameObject;
+        _textClickToPlay = canvas.Find("HintText").GetComponent<TextMeshProUGUI>();
+        GameOverScreen = canvas.Find("GameOverScreen").gameObject;
 
-        GameObject.FindGameObjectWithTag("Bird").GetComponent<BirdScript>().Sprites = 
-            ChangeSpriteScript.GameSprites[..3];
+        var bird = GameObject.FindGameObjectWithTag("Bird");
+        bird.GetComponent<BirdScript>().Sprites = ChangeSpriteScript.GameSprites[..3];
 
-        //This pice of code is for hat
+        bird.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite =  //Hat
+            ChangeSpriteScript.GameSprites[3];
 
-        /*GameObject.FindWithTag("Hat").transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
-            ChangeSpriteScript.GameSprites[3];*/
-        
         GameObject.FindWithTag("MainCamera").transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
-            ChangeSpriteScript.GameSprites[4];
+            ChangeSpriteScript.GameSprites[4];  //Background
 
         Pipes.transform.Find("TopPipe").GetComponent<SpriteRenderer>().sprite = 
             ChangeSpriteScript.GameSprites[5];

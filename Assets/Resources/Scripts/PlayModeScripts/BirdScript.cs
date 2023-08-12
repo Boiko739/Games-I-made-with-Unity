@@ -35,7 +35,7 @@ public class BirdScript : View
     {
         if (!_logic.PlayerStartedPlaying && transform.position.y <= 0)
             Flap(2);
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left) && _birdIsAlive)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left)) && _birdIsAlive)
             Flap();
         if (gameObject.transform.position.y <= -100)
             Destroy(gameObject);
@@ -73,9 +73,19 @@ public class BirdScript : View
         if (_birdIsAlive)
             gameObject.GetComponent<AudioSource>().Play();
         await ChangeSkin(BirdSkins.DeadBird);
+        ChangeHatCondition();
         _birdIsAlive = false;
         _logic.GameOver();
 
+    }
+
+    private void ChangeHatCondition()
+    {
+        var hat = transform.GetChild(0);
+        hat.GetComponent<FixedJoint2D>().enabled = false;
+        hat.GetComponent<FixedJoint2D>().connectedBody = null;
+        hat.GetComponent<Rigidbody2D>().mass = 2f;
+        hat.GetComponent<Rigidbody2D>().gravityScale = 2f;
     }
 
     public override void SetSkin(string path)
