@@ -25,7 +25,8 @@ public class LogicScript : MonoBehaviour
     private Text _scoreText;
     private TextMeshProUGUI _textClickToPlay;
 
-    public bool PlayerIsPlaying { get; private set; } = false;
+    public bool GameIsOver { get; private set; } = false;
+    public bool PlayerStartedPlaying { get; private set; } = false;
     public GameObject Pipes { get; private set; }
     public GameObject PipeSpawner { get; private set; }
     public Text ScoreText { get => _scoreText; private set => _scoreText = value; }
@@ -49,7 +50,7 @@ public class LogicScript : MonoBehaviour
         GameOverScreen = canvas.transform.Find("GameOverScreen").gameObject;
 
         GameObject.FindGameObjectWithTag("Bird").GetComponent<BirdScript>().Sprites = 
-            ChangeSpriteScript.GameSprites.GetRange(0, 3).ToArray();
+            ChangeSpriteScript.GameSprites[..3];
 
         //This pice of code is for hat
 
@@ -65,27 +66,17 @@ public class LogicScript : MonoBehaviour
             ChangeSpriteScript.GameSprites[5];
 
     }
-    private void CheckPause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Time.timeScale = _gameIsPaused ? 1 : 0;
-            _gameIsPaused = !_gameIsPaused;
-        }
-    }
+
 
     private void Update()
     {
         CheckPause();
 
-        if (!PlayerIsPlaying)
+        if (!PlayerStartedPlaying)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton((short)MouseButton.Left))
             {
-                PipeSpawner.SetActive(true);
-                PlayerIsPlaying = true;
-                _hintIsShowing = false;
-                PipeSpawner.GetComponent<PipeSpawnerScript>().SpawnPipes();
+                OnPlayerStartedPlaying();
                 return;
             }
             if (!_hintIsShowing)
@@ -101,6 +92,23 @@ public class LogicScript : MonoBehaviour
         else _textClickToPlay.enabled = false;
     }
 
+    private void OnPlayerStartedPlaying()
+    {
+        PipeSpawner.SetActive(true);
+        PlayerStartedPlaying = true;
+        _hintIsShowing = false;
+        PipeSpawner.GetComponent<PipeSpawnerScript>().SpawnPipes();
+    }
+
+    private void CheckPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = _gameIsPaused ? 1 : 0;
+            _gameIsPaused = !_gameIsPaused;
+        }
+    }
+
     private void SetHintIsShowingToTrue()
     {
         _hintIsShowing = true;
@@ -108,7 +116,7 @@ public class LogicScript : MonoBehaviour
 
     private void FlashHint()
     {
-        if (!PlayerIsPlaying && _textClickToPlay != null)
+        if (!PlayerStartedPlaying && _textClickToPlay != null)
             FunctionTimer.StartAndUpdateTimer(ref _timer, FLASH_HINT_DELAY, SwitchTextCondition);
         else
             _hintIsShowing = false;
@@ -148,6 +156,7 @@ public class LogicScript : MonoBehaviour
             if (!GameOverScreen.activeInHierarchy)
                 HighscoreManager.AddHighscoreEntry(ScoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore);
             GameOverScreen.SetActive(true);
+            GameIsOver = true;
         }
     }
 

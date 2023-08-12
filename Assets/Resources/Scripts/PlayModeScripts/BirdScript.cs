@@ -33,7 +33,7 @@ public class BirdScript : View
 
     private void Update()
     {
-        if (!_logic.PlayerIsPlaying && transform.position.y <= 0)
+        if (!_logic.PlayerStartedPlaying && transform.position.y <= 0)
             Flap(2);
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left) && _birdIsAlive)
             Flap();
@@ -75,6 +75,7 @@ public class BirdScript : View
         await ChangeSkin(BirdSkins.DeadBird);
         _birdIsAlive = false;
         _logic.GameOver();
+
     }
 
     public override void SetSkin(string path)

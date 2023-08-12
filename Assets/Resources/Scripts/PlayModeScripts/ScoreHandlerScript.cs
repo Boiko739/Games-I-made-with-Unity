@@ -10,21 +10,29 @@ namespace Score
                      _highcoreText;
         public int PlayerScore { get; private set; } = 0;
         public const short SCORE_TO_ADD = 1;
+        private LogicScript _logic;
 
         private void Start()
         {
-            var logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
-            _scoreText = logic.ScoreText;
-            _highcoreText = logic.HighscoreText;
-            Highscore = HighscoreManager.LoadHighscores()[0].Score;
+            _logic = GameObject.FindWithTag("Logic").GetComponent<LogicScript>();
+            _scoreText = _logic.ScoreText;
+            _highcoreText = _logic.HighscoreText;
+
+            Highscore = HighscoreManager.LoadHighscores().Capacity > 0 ?
+                HighscoreManager.LoadHighscores()[0].Score : 0;
             ShowScore();
         }
 
-        [ContextMenu("Increase Score")]
         internal void AddScore()
         {
             PlayerScore += SCORE_TO_ADD;
             ShowScore();
+        }
+        [ContextMenu("Increase Score 100 times")]
+        internal void AddScore100()
+        {
+            for (int i = 0; i < 100; i++)
+                _logic.OnScoreIncreased(); 
         }
 
         /// <summary>

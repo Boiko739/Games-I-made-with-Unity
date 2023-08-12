@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class ChangeSpriteScript : MonoBehaviour
 {
     [field: SerializeField]
-    public int CurrentBirdSprite { get; private set; } = 0;
+    public static int CurrentBirdSprite { get; private set; } = 0;
     [field: SerializeField]
-    public int CurrentHatSprite { get; private set; } = 0;
+    public static int CurrentHatSprite { get; private set; } = 0;
     [field: SerializeField]
-    public int CurrentBackgroundSprite { get; private set; } = 0;
+    public static int CurrentBackgroundSprite { get; private set; } = 0;
     [field: SerializeField]
-    public int CurrentPipeSprite { get; private set; } = 0;
+    public static int CurrentPipeSprite { get; private set; } = 0;
 
     public GameObject BirdImage, HatImage, BackgroundImage, PipeImage;
 
     [SerializeField]
     private List<Sprite> _birdSprites, _hatSprites, _backgroundSprites, _pipeSprites;
-    public static List<Sprite> GameSprites { get; private set; }
+    public static Sprite[] GameSprites { get; private set; }
 
     private void Start()
     {
@@ -26,7 +26,15 @@ public class ChangeSpriteScript : MonoBehaviour
         _hatSprites = Resources.LoadAll<Sprite>("Sprites/Hats").ToList();
         _backgroundSprites = Resources.LoadAll<Sprite>("Sprites/Backgrounds").ToList();
         _pipeSprites = Resources.LoadAll<Sprite>("Sprites/Pipes").ToList();
+
         if (GameSprites == null) SaveAllSprites();
+        else
+        {
+            BirdImage.GetComponent<Image>().sprite = GameSprites[0];
+            HatImage.GetComponent<Image>().sprite = GameSprites[3];
+            BackgroundImage.GetComponent<Image>().sprite = GameSprites[4];
+            PipeImage.GetComponent<Image>().sprite = GameSprites[5];
+        }
     }
 
     public void SetByDefault()
@@ -78,10 +86,13 @@ public class ChangeSpriteScript : MonoBehaviour
 
     private void SaveAllSprites()
     {
-        var list = _birdSprites.GetRange(CurrentBirdSprite, 3);
-        list.Add(_hatSprites[CurrentHatSprite]);
-        list.Add(_backgroundSprites[CurrentBackgroundSprite]);
-        list.Add(_pipeSprites[CurrentPipeSprite]);
-        GameSprites = list;
+        Sprite[] sprites = new Sprite[6];
+        var shortList = _birdSprites.GetRange(CurrentBirdSprite, 3);
+        for (int i = 0; i < 3; i++)
+            sprites[i] = shortList[i];
+        sprites [3] = _hatSprites[CurrentHatSprite];
+        sprites[4] = _backgroundSprites[CurrentBackgroundSprite];
+        sprites[5] = _pipeSprites[CurrentPipeSprite];
+        GameSprites = sprites;
     }
 }
