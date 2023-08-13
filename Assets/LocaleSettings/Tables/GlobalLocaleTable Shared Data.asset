@@ -123,6 +123,10 @@ MonoBehaviour:
     m_Key: Info
     m_Metadata:
       m_Items: []
+  - m_Id: 12299529272336384
+    m_Key: Medal
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

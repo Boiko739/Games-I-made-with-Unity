@@ -128,6 +128,12 @@ MonoBehaviour:
       Hope you like it'
     m_Metadata:
       m_Items: []
+  - m_Id: 12299529272336384
+    m_Localized: 'Medal
+
+      "The Best Player"'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
