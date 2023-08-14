@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 32222959628288
-    m_Key: Quit
+    m_Key: Exit
     m_Metadata:
       m_Items: []
   - m_Id: 32259236163584
@@ -125,6 +125,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12299529272336384
     m_Key: Medal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12798165626298368
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12801444695416832
+    m_Key: Restart
     m_Metadata:
       m_Items: []
   m_Metadata:

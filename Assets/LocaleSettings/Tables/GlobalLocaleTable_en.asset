@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 32222959628288
-    m_Localized: Quit
+    m_Localized: Exit
     m_Metadata:
       m_Items: []
   - m_Id: 32259236163584
@@ -132,6 +132,14 @@ MonoBehaviour:
     m_Localized: 'Medal
 
       "The Best Player"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12798165626298368
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12801444695416832
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   references:

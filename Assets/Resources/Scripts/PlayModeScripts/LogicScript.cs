@@ -10,22 +10,23 @@ public class LogicScript : MonoBehaviour
     public const float DEAD_ZONE = -30f;
 
     private GameObject GameOverScreen,
-                       ScoreHandler;
+                       ScoreHandler,
+                       PauseMenu;
 
     private const float SPAWN_OFFSET_INCREASER = 1.5f,
-                        MAX_SCORE_TO_INCREASE_SPAWN_OFFSET = 20f,
-                        MAX_SCORE_TO_INCREASE_SPEED = 100f,
+                        SCORE_LIMIT_TO_INCREASE_SPAWN_OFFSET = 20f,
+                        SCORE_LIMIT_TO_INCREASE_SPEED = 100f,
                         SHOW_HINT_DELAY_AFTER_START = 2.5f,//in seconds
-                        FLASH_HINT_DELAY = 1.5f;           //same
+                        FLASH_HINT_DELAY = 1.5f;           //this one too
 
-    private bool _hintIsShowing = false,
-                 _gameIsPaused = false;
+    private bool _hintIsShowing = false;
 
     private FunctionTimer _timer;
     private Text _scoreText;
     private TextMeshProUGUI _textClickToPlay;
 
     public bool GameIsOver { get; private set; } = false;
+    public bool GameIsPaused { get; private set; } = false;
     public bool PlayerStartedPlaying { get; private set; } = false;
     public GameObject Pipes { get; private set; }
     public GameObject PipeSpawner { get; private set; }
@@ -42,6 +43,8 @@ public class LogicScript : MonoBehaviour
         Pipes = Resources.Load<GameObject>("Sprites/Pipes");
         PipeSpawner = spawners.Find("PipeSpawner").gameObject;
 
+        PauseMenu = canvas.Find("PauseMenu").gameObject;
+
         ScoreHandler = this.transform.GetChild(0).gameObject;
         ScoreText = canvas.Find("PlayerScore").GetComponent<Text>();
         HighscoreText = canvas.Find("Highscore").GetComponent<Text>();
@@ -55,20 +58,21 @@ public class LogicScript : MonoBehaviour
         bird.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite =  //Hat
             ChangeSpriteScript.GameSprites[3];
 
-        GameObject.FindWithTag("MainCamera").transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
+        GameObject.FindWithTag("MainCamera").transform.GetChild(0).GetComponent<SpriteRenderer>().sprite =
             ChangeSpriteScript.GameSprites[4];  //Background
 
-        Pipes.transform.Find("TopPipe").GetComponent<SpriteRenderer>().sprite = 
+        Pipes.transform.Find("TopPipe").GetComponent<SpriteRenderer>().sprite =
             ChangeSpriteScript.GameSprites[5];
-        Pipes.transform.Find("BottomPipe").GetComponent<SpriteRenderer>().sprite = 
+        Pipes.transform.Find("BottomPipe").GetComponent<SpriteRenderer>().sprite =
             ChangeSpriteScript.GameSprites[5];
 
+        Time.timeScale = 1;
     }
 
 
     private void Update()
     {
-        CheckPause();
+        CheckPauseResume();
 
         if (!PlayerStartedPlaying)
         {
@@ -98,13 +102,17 @@ public class LogicScript : MonoBehaviour
         PipeSpawner.GetComponent<PipeSpawnerScript>().SpawnPipes();
     }
 
-    private void CheckPause()
+    private void CheckPauseResume()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Time.timeScale = _gameIsPaused ? 1 : 0;
-            _gameIsPaused = !_gameIsPaused;
-        }
+            PauseResume();
+    }
+
+    public void PauseResume()
+    {
+        Time.timeScale = GameIsPaused ? 1 : 0;
+        GameIsPaused = !GameIsPaused;
+        PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
     }
 
     private void SetHintIsShowingToTrue()
@@ -130,7 +138,7 @@ public class LogicScript : MonoBehaviour
         var scoreHandler = ScoreHandler.GetComponent<ScoreHandlerScript>();
 
         scoreHandler.AddScore();
-        if (scoreHandler.PlayerScore <= MAX_SCORE_TO_INCREASE_SPEED)
+        if (scoreHandler.PlayerScore <= SCORE_LIMIT_TO_INCREASE_SPEED)
             Pipes.GetComponent<PipeMoveScript>().IncreaseSpeed();
     }
 
@@ -171,8 +179,8 @@ public class LogicScript : MonoBehaviour
         {
             var playerScore = ScoreHandler.GetComponent<ScoreHandlerScript>().PlayerScore;
 
-            spawnOffset = playerScore < MAX_SCORE_TO_INCREASE_SPAWN_OFFSET ?
-                spawnOffset += SPAWN_OFFSET_INCREASER * (playerScore / MAX_SCORE_TO_INCREASE_SPAWN_OFFSET) :
+            spawnOffset = playerScore < SCORE_LIMIT_TO_INCREASE_SPAWN_OFFSET ?
+                spawnOffset += SPAWN_OFFSET_INCREASER * (playerScore / SCORE_LIMIT_TO_INCREASE_SPAWN_OFFSET) :
                 spawnOffset += SPAWN_OFFSET_INCREASER;
         }
         range[0] = pos - spawnOffset;

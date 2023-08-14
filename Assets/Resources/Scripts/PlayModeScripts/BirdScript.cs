@@ -35,7 +35,8 @@ public class BirdScript : View
     {
         if (!_logic.PlayerStartedPlaying && transform.position.y <= 0)
             Flap(2);
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left)) && _birdIsAlive)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((short)MouseButton.Left)) &&
+            _birdIsAlive && !_logic.GameIsPaused)
             Flap();
         if (gameObject.transform.position.y <= -100)
             Destroy(gameObject);
