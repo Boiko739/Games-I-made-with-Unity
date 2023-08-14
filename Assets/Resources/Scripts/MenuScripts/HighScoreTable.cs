@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,7 +79,7 @@ namespace Score
         public void ResetScoreboard()
         {
             _entryContainer.gameObject.SetActive(false);
-            _highscoreEntryTransformList.Clear();
+            _highscoreEntryTransformList?.Clear();
             HighscoreManager.SaveHighscores(new List<HighscoreEntry>());
             ShowEntries(HighscoreManager.LoadHighscores());
         }

@@ -45,7 +45,7 @@ namespace Score
 
         internal static List<HighscoreEntry> LoadHighscores()
         {
-            return JsonUtility.FromJson<Highscore>(PlayerPrefs.GetString("highscoreTable")).highscoreEntryList;
+            return JsonUtility.FromJson<Highscore>(PlayerPrefs.GetString("highscoreTable"))?.highscoreEntryList;
         }
 
         public static void AddHighscoreEntry(int score)

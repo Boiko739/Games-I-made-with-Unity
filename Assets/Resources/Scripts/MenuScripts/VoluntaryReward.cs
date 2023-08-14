@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class VoluntaryReward : MonoBehaviour
 {
-    private bool _voluntaryExecuted = false;
+    private static bool VoluntaryExecuted = false;
     private void Start()
     {
-        transform.GetChild(0).gameObject.SetActive(_voluntaryExecuted);
+        transform.GetChild(0).gameObject.SetActive(VoluntaryExecuted);
     }
 
     public void VoluntaryRewad()
     {
-        _voluntaryExecuted = true;
+        VoluntaryExecuted = true;
         Start();
     }
 }
