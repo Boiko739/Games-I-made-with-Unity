@@ -18,6 +18,13 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+# These files are built by Unity, and should not be committed to version control.  If you have a specific reason to include them, you can remove them from this list.
+/Assets/Scenes/Cockpit/
+/Assets/Scenes/Garden/
+/Assets/Scenes/Oasis/
+/Assets/Scenes/Terminal/
+/Assets/SharedAssets/
+/Assets/Tutorials/
 *.log
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be committed to version control.
